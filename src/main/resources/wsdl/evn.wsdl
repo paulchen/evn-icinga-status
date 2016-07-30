@@ -1,0 +1,84 @@
+<?xml version='1.0' encoding='UTF-8'?><wsdl:definitions name="MaxRemote" targetNamespace="http://www.springframework.org/schema/beans" xmlns:ns1="http://cl.max.eq3.de/" xmlns:ns2="http://schemas.xmlsoap.org/soap/http" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.springframework.org/schema/beans" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:import location="max.wsdl" namespace="http://cl.max.eq3.de/">
+    </wsdl:import>
+  <wsdl:binding name="MaxRemoteSoapBinding" type="ns1:IMaxRemote">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="getMaxCubeState">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getMaxCubeState">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getMaxCubeStateResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ClientException">
+        <soap:fault name="ClientException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="logout">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="logout">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="logoutResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ClientException">
+        <soap:fault name="ClientException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="setClientCommands">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="setClientCommands">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="setClientCommandsResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ClientException">
+        <soap:fault name="ClientException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="login">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="login">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="loginResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ClientException">
+        <soap:fault name="ClientException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="authenticateAgainstIdentityProvider">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="authenticateAgainstIdentityProvider">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="authenticateAgainstIdentityProviderResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ClientException">
+        <soap:fault name="ClientException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getRemoteUserData">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getRemoteUserData">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getRemoteUserDataResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ClientException">
+        <soap:fault name="ClientException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="MaxRemote">
+    <wsdl:port binding="tns:MaxRemoteSoapBinding" name="IMaxRemotePort">
+      <soap:address location="http://loginsmarthome.evn.at/soap/api"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
