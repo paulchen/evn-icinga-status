@@ -13,6 +13,7 @@ public class StatusProperties implements Serializable {
     private static final String USERNAME = "username";
     private static final String PASSWORD = "password";
     private static final String SESSION_TOKEN = "sessionToken";
+    private static final String STATUS_OUTPUT_FILE = "statusOutputFile";
 
     private final Properties properties;
     private final String filename;
@@ -59,6 +60,10 @@ public class StatusProperties implements Serializable {
 
     public String getSessionToken() {
         return (String) properties.get(SESSION_TOKEN);
+    }
+
+    public String getStatusOutputFile() {
+        return (String) properties.get(STATUS_OUTPUT_FILE);
     }
 
     public void setSessionToken(final String sessionToken) {
