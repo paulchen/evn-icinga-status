@@ -23,8 +23,8 @@ public class StatusProperties implements Serializable {
         this.filename = filename;
 
         properties = new Properties();
-        try {
-            properties.load(new FileInputStream(filename));
+        try (FileInputStream fileInputStream = new FileInputStream(filename)) {
+            properties.load(fileInputStream);
         }
         catch (IOException e) {
             throw new RuntimeException(e);
@@ -41,8 +41,8 @@ public class StatusProperties implements Serializable {
     }
 
     public void save() {
-        try {
-            properties.store(new FileOutputStream(filename), null);
+        try (FileOutputStream fileOutputStream = new FileOutputStream(filename)) {
+            properties.store(fileOutputStream, null);
         }
         catch (IOException e) {
             throw new RuntimeException(e);
