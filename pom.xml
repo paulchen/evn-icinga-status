@@ -9,8 +9,11 @@
     <version>1.0-SNAPSHOT</version>
 
     <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
         <cxf.version>3.1.6</cxf.version>
         <commons-lang.version>3.4</commons-lang.version>
+        <maven-compiler.version>3.5.1</maven-compiler.version>
     </properties>
 
     <dependencies>
@@ -42,16 +45,19 @@
     <build>
         <plugins>
             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven-compiler.version}</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+
+            <plugin>
                 <groupId>org.apache.cxf</groupId>
                 <artifactId>cxf-codegen-plugin</artifactId>
                 <version>${cxf.version}</version>
-                <dependencies>
-                    <dependency>
-                        <groupId>org.apache.cxf</groupId>
-                        <artifactId>cxf-rt-bindings-soap</artifactId>
-                        <version>${cxf.version}</version>
-                    </dependency>
-                </dependencies>
                 <executions>
                     <execution>
                         <id>generate-jaxb</id>
