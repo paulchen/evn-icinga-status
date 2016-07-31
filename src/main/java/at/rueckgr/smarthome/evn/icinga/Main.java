@@ -1,51 +1,35 @@
 package at.rueckgr.smarthome.evn.icinga;
 
-import de.eq3.max.cl.IMaxRemote;
-import de.eq3.max.cl.dto.Device;
-import de.eq3.max.cl.dto.MaxCubeState;
-import de.eq3.max.cl.dto.Room;
-import org.apache.commons.lang3.StringUtils;
+import at.rueckgr.smarthome.evn.remote.Device;
+import at.rueckgr.smarthome.evn.remote.Room;
+import at.rueckgr.smarthome.evn.remote.SmartHomeService;
+import at.rueckgr.smarthome.evn.remote.SmartHomeState;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.Pair;
-import org.apache.cxf.endpoint.Client;
-import org.apache.cxf.frontend.ClientProxy;
-import org.springframework.schema.beans.MaxRemote;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
     public static void main(String[] args) throws Exception {
-        MaxRemote maxRemote = new MaxRemote();
-        IMaxRemote port = maxRemote.getIMaxRemotePort();
-
         if (args.length != 2) {
             return;
         }
 
-        String loginResponse = port.login(args[0], args[1]);
+        final SmartHomeService service = new SmartHomeService(args[0], args[1]);
+        final SmartHomeState state = service.getState();
 
-        if (StringUtils.isBlank(loginResponse)) {
-            return;
-        }
-
-        HeaderInterceptor headerInterceptor = new HeaderInterceptor(loginResponse);
-
-        Client proxy = ClientProxy.getClient(port);
-        proxy.getOutInterceptors().add(headerInterceptor);
-
-        MaxCubeState maxCubeState = port.getMaxCubeState();
-
-        List<Pair<String, String>> problems = new ArrayList<Pair<String, String>>();
-        List<Room> rooms = maxCubeState.getRooms().getRoom();
+        final List<Pair<String, String>> problems = new ArrayList<>();
+        final List<Room> rooms = state.getRooms();
         for (Room room : rooms) {
-            String roomName = room.getName();
-            List<Device> devices = room.getDevices().getDevice();
+            final String roomName = room.getName();
+            List<Device> devices = room.getDevices();
+
+            //noinspection Convert2streamapi
             for (Device device : devices) {
-                String deviceName = device.getName();
-                String deviceState = device.getRadioState().value();
-                if(!StringUtils.equalsIgnoreCase("ok", deviceState)) {
-                    problems.add(new ImmutablePair<String, String>(roomName, deviceName));
+                if(!device.isOk()) {
+                    final String deviceName = device.getName();
+                    problems.add(new ImmutablePair<>(roomName, deviceName));
                 }
             }
         }

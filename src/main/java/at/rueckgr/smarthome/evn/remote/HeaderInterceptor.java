@@ -1,15 +1,16 @@
-package at.rueckgr.smarthome.evn.icinga;
+package at.rueckgr.smarthome.evn.remote;
 
 import org.apache.cxf.interceptor.Fault;
 import org.apache.cxf.message.Message;
 import org.apache.cxf.phase.AbstractPhaseInterceptor;
 import org.apache.cxf.phase.Phase;
 
+import java.io.Serializable;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
-public class HeaderInterceptor extends AbstractPhaseInterceptor<Message> {
+public class HeaderInterceptor extends AbstractPhaseInterceptor<Message> implements Serializable {
     private final String sessionToken;
 
     public HeaderInterceptor(String sessionToken) {
