@@ -9,11 +9,14 @@
     <version>1.0-SNAPSHOT</version>
 
     <properties>
+        <file.properties>evn.properties</file.properties>
+
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
         <cxf.version>3.1.6</cxf.version>
         <commons-lang.version>3.4</commons-lang.version>
         <maven-compiler.version>3.5.1</maven-compiler.version>
+        <maven-exec.version>1.5.0</maven-exec.version>
     </properties>
 
     <dependencies>
@@ -75,6 +78,25 @@
                         </goals>
                     </execution>
                 </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>${maven-exec.version}</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>java</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <mainClass>at.rueckgr.smarthome.evn.icinga.Main</mainClass>
+                    <arguments>
+                        <argument>${file.properties}</argument>
+                    </arguments>
+                </configuration>
             </plugin>
         </plugins>
     </build>
