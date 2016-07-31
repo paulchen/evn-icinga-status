@@ -30,7 +30,7 @@ public class SmartHomeService implements Serializable {
     }
 
     public void login() {
-        String sessionToken = null;
+        String sessionToken;
         try {
             sessionToken = remoteService.login(state.getUsername(), state.getPassword());
         }
@@ -41,6 +41,8 @@ public class SmartHomeService implements Serializable {
         if(StringUtils.isBlank(sessionToken)) {
             throw new SmartHomeException();
         }
+
+        state.setSessionToken(sessionToken);
 
         final HeaderInterceptor headerInterceptor = new HeaderInterceptor(sessionToken);
 
