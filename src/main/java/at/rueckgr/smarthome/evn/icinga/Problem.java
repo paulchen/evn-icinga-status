@@ -25,6 +25,7 @@ public class Problem implements Serializable {
 
     @Override
     public String toString() {
-        return MessageFormat.format("room={0}/device={1}", room.getName(), device.getName());
+        final String problem = device.getState().getDescription();
+        return MessageFormat.format("room={0}/device={1}/problem={2}", room.getName(), device.getName(), problem);
     }
 }

@@ -1,9 +1,6 @@
 package at.rueckgr.smarthome.evn.icinga;
 
-import at.rueckgr.smarthome.evn.remote.Device;
-import at.rueckgr.smarthome.evn.remote.Room;
-import at.rueckgr.smarthome.evn.remote.SmartHomeService;
-import at.rueckgr.smarthome.evn.remote.SmartHomeState;
+import at.rueckgr.smarthome.evn.remote.*;
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.FileOutputStream;
@@ -36,7 +33,7 @@ public class Main {
 
             //noinspection Convert2streamapi
             for (Device device : devices) {
-                if (!device.isOk()) {
+                if (!device.getState().isOk()) {
                     problems.add(new Problem(room, device));
                 }
             }

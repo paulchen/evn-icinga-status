@@ -5,14 +5,14 @@ import java.io.Serializable;
 public class Device implements Serializable {
     private String serialNumber;
     private String name;
-    private boolean ok;
+    private DeviceState state;
 
     public String getSerialNumber() {
         return serialNumber;
     }
 
     public void setSerialNumber(String serialNumber) {
-        this.serialNumber = this.serialNumber;
+        this.serialNumber = serialNumber;
     }
 
     public String getName() {
@@ -23,11 +23,11 @@ public class Device implements Serializable {
         this.name = name;
     }
 
-    public boolean isOk() {
-        return ok;
+    public DeviceState getState() {
+        return state;
     }
 
-    public void setOk(boolean ok) {
-        this.ok = ok;
+    public void setState(DeviceState state) {
+        this.state = state;
     }
 }

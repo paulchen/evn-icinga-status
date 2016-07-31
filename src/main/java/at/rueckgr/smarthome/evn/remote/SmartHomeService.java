@@ -2,7 +2,10 @@ package at.rueckgr.smarthome.evn.remote;
 
 import de.eq3.max.cl.ClientException;
 import de.eq3.max.cl.IMaxRemote;
+import de.eq3.max.cl.dto.HeatingThermostatDeviceState;
 import de.eq3.max.cl.dto.MaxCubeState;
+import de.eq3.max.cl.dto.PushButtonDeviceState;
+import de.eq3.max.cl.dto.ShutterContactDeviceState;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Validate;
 import org.apache.cxf.endpoint.Client;
@@ -96,8 +99,8 @@ public class SmartHomeService implements Serializable {
                 final Device device = new Device();
                 device.setSerialNumber(serviceDevice.getSerialNumber());
                 device.setName(serviceDevice.getName());
-                final String radioState = serviceDevice.getRadioState().value();
-                device.setOk(StringUtils.equalsIgnoreCase(radioState, "ok"));
+
+                device.setState(determineState(serviceDevice));
 
                 devices.add(device);
             }
@@ -107,6 +110,37 @@ public class SmartHomeService implements Serializable {
         }
         smartHomeState.setRooms(rooms);
         return smartHomeState;
+    }
+
+    private DeviceState determineState(final de.eq3.max.cl.dto.Device device) {
+        String value = device.getRadioState().value();
+        if(!StringUtils.equalsIgnoreCase(value, "ok")) {
+            return DeviceState.RADIO_ERROR;
+        }
+
+        de.eq3.max.cl.dto.DeviceState deviceState = device.getState();
+        if(deviceState instanceof HeatingThermostatDeviceState) {
+            HeatingThermostatDeviceState heatingThermostatDeviceState = (HeatingThermostatDeviceState) deviceState;
+            if(heatingThermostatDeviceState.isBatteryLow()) {
+                return DeviceState.BATTERY_LOW;
+            }
+        }
+
+        if(deviceState instanceof PushButtonDeviceState) {
+            PushButtonDeviceState pushButtonDeviceState = (PushButtonDeviceState) deviceState;
+            if(pushButtonDeviceState.isBatteryLow()) {
+                return DeviceState.BATTERY_LOW;
+            }
+        }
+
+        if(deviceState instanceof ShutterContactDeviceState) {
+            ShutterContactDeviceState shutterContactDeviceState = (ShutterContactDeviceState) deviceState;
+            if(shutterContactDeviceState.isBatteryLow()) {
+                return DeviceState.BATTERY_LOW;
+            }
+        }
+
+        return DeviceState.OK;
     }
 
     public void setSessionToken(final String sessionToken) {
