@@ -8,6 +8,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.Pair;
 
+import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,6 +44,16 @@ public class Main {
         properties.setSessionToken(service.getSessionToken());
         properties.save();
 
-        System.out.print(problems);
+        IcingaResult icingaResult = new IcingaResult();
+        if(problems.isEmpty()) {
+            icingaResult.setStatus(IcingaStatus.OK);
+            icingaResult.setText("No problems detected");
+        }
+        else {
+            icingaResult.setStatus(IcingaStatus.CRITICAL);
+            icingaResult.setText("Problem(s): " + problems.toString());
+        }
+
+        IcingaResultWriter.write(System.out, icingaResult);
     }
 }
