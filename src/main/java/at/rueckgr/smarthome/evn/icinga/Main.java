@@ -4,6 +4,7 @@ import at.rueckgr.smarthome.evn.remote.Device;
 import at.rueckgr.smarthome.evn.remote.Room;
 import at.rueckgr.smarthome.evn.remote.SmartHomeService;
 import at.rueckgr.smarthome.evn.remote.SmartHomeState;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.Pair;
 
@@ -11,12 +12,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
-    public static void main(String[] args) throws Exception {
-        if (args.length != 2) {
-            return;
+    public static void main(String[] args) {
+        if (args.length != 1) {
+            throw new RuntimeException("Wrong number of command line arguments");
         }
 
-        final SmartHomeService service = new SmartHomeService(args[0], args[1]);
+        StatusProperties properties = new StatusProperties(args[0]);
+
+        final SmartHomeService service = new SmartHomeService(properties.getUsername(), properties.getPassword());
+
+        if(!StringUtils.isBlank(properties.getSessionToken())) {
+            service.setSessionToken(properties.getSessionToken());
+        }
+
         final SmartHomeState state = service.getState();
 
         final List<Pair<String, String>> problems = new ArrayList<>();
@@ -35,5 +43,8 @@ public class Main {
         }
 
         System.out.print(problems);
+
+        properties.setSessionToken(service.getSessionToken());
+        properties.save();
     }
 }

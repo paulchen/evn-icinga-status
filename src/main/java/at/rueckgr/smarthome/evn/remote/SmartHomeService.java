@@ -33,17 +33,20 @@ public class SmartHomeService implements Serializable {
         String sessionToken;
         try {
             sessionToken = remoteService.login(state.getUsername(), state.getPassword());
-        }
-        catch (ClientException e) {
+        } catch (ClientException e) {
             throw new SmartHomeException(e);
         }
 
-        if(StringUtils.isBlank(sessionToken)) {
+        if (StringUtils.isBlank(sessionToken)) {
             throw new SmartHomeException();
         }
 
         state.setSessionToken(sessionToken);
 
+        addInterceptor(state.getSessionToken());
+    }
+
+    private void addInterceptor(final String sessionToken) {
         final HeaderInterceptor headerInterceptor = new HeaderInterceptor(sessionToken);
 
         final Client proxy = ClientProxy.getClient(remoteService);
@@ -104,5 +107,15 @@ public class SmartHomeService implements Serializable {
         }
         smartHomeState.setRooms(rooms);
         return smartHomeState;
+    }
+
+    public void setSessionToken(final String sessionToken) {
+        state.setSessionToken(sessionToken);
+
+        addInterceptor(state.getSessionToken());
+    }
+
+    public String getSessionToken() {
+        return state.getSessionToken();
     }
 }
