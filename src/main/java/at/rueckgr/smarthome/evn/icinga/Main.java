@@ -27,24 +27,22 @@ public class Main {
 
         final SmartHomeState state = service.getState();
 
-        final List<Pair<String, String>> problems = new ArrayList<>();
+        final List<Problem> problems = new ArrayList<>();
         final List<Room> rooms = state.getRooms();
         for (Room room : rooms) {
-            final String roomName = room.getName();
             List<Device> devices = room.getDevices();
 
             //noinspection Convert2streamapi
             for (Device device : devices) {
                 if(!device.isOk()) {
-                    final String deviceName = device.getName();
-                    problems.add(new ImmutablePair<>(roomName, deviceName));
+                    problems.add(new Problem(room, device));
                 }
             }
         }
 
-        System.out.print(problems);
-
         properties.setSessionToken(service.getSessionToken());
         properties.save();
+
+        System.out.print(problems);
     }
 }
