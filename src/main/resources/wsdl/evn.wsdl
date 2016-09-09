@@ -78,7 +78,7 @@
   </wsdl:binding>
   <wsdl:service name="MaxRemote">
     <wsdl:port binding="tns:MaxRemoteSoapBinding" name="IMaxRemotePort">
-      <soap:address location="http://loginsmarthome.evn.at/soap/api"/>
+      <soap:address location="https://loginsmarthome.evn.at/soap/api"/>
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>
