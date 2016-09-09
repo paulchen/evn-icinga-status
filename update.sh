@@ -2,4 +2,4 @@
 
 cd `dirname $0`
 
-mvn exec:java
+target/appassembler/bin/evn-icinga-status evn.properties

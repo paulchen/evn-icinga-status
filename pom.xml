@@ -17,6 +17,7 @@
         <commons-lang.version>3.4</commons-lang.version>
         <maven-compiler.version>3.5.1</maven-compiler.version>
         <maven-exec.version>1.5.0</maven-exec.version>
+        <appassembler-maven-plugin.version>1.10</appassembler-maven-plugin.version>
     </properties>
 
     <dependencies>
@@ -96,6 +97,20 @@
                     <arguments>
                         <argument>${file.properties}</argument>
                     </arguments>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>appassembler-maven-plugin</artifactId>
+                <version>${appassembler-maven-plugin.version}</version>
+                <configuration>
+                    <programs>
+                        <program>
+                            <mainClass>at.rueckgr.smarthome.evn.icinga.Main</mainClass>
+                            <name>evn-icinga-status</name>
+                        </program>
+                    </programs>
                 </configuration>
             </plugin>
         </plugins>
