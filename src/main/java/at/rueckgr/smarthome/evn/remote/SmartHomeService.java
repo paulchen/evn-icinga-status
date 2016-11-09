@@ -89,16 +89,16 @@ public class SmartHomeService implements Serializable {
         final SmartHomeState smartHomeState = new SmartHomeState();
 
         final List<Room> rooms = new ArrayList<>();
-        for (de.eq3.max.cl.dto.Room serviceRoom : maxCubeState.getRooms().getRoom()) {
+        for (de.eq3.max.cl.dto.Room serviceRoom : maxCubeState.getRooms().getValue().getRoom()) {
             final Room room = new Room();
             room.setId(serviceRoom.getId());
-            room.setName(serviceRoom.getName());
+            room.setName(serviceRoom.getName().getValue());
 
             List<Device> devices = new ArrayList<>();
-            for (de.eq3.max.cl.dto.Device serviceDevice : serviceRoom.getDevices().getDevice()) {
+            for (de.eq3.max.cl.dto.Device serviceDevice : serviceRoom.getDevices().getValue().getDevice()) {
                 final Device device = new Device();
-                device.setSerialNumber(serviceDevice.getSerialNumber());
-                device.setName(serviceDevice.getName());
+                device.setSerialNumber(serviceDevice.getSerialNumber().getValue());
+                device.setName(serviceDevice.getName().getValue());
 
                 device.setState(determineState(serviceDevice));
 
@@ -113,12 +113,12 @@ public class SmartHomeService implements Serializable {
     }
 
     private DeviceState determineState(final de.eq3.max.cl.dto.Device device) {
-        String value = device.getRadioState().value();
+        String value = device.getRadioState().getValue().value();
         if(!StringUtils.equalsIgnoreCase(value, "ok")) {
             return DeviceState.RADIO_ERROR;
         }
 
-        de.eq3.max.cl.dto.DeviceState deviceState = device.getState();
+        de.eq3.max.cl.dto.DeviceState deviceState = device.getState().getValue();
         if(deviceState instanceof HeatingThermostatDeviceState) {
             HeatingThermostatDeviceState heatingThermostatDeviceState = (HeatingThermostatDeviceState) deviceState;
             if(heatingThermostatDeviceState.isBatteryLow()) {

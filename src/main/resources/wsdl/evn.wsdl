@@ -1,8 +1,44 @@
 <?xml version='1.0' encoding='UTF-8'?><wsdl:definitions name="MaxRemote" targetNamespace="http://www.springframework.org/schema/beans" xmlns:ns1="http://cl.max.eq3.de/" xmlns:ns2="http://schemas.xmlsoap.org/soap/http" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.springframework.org/schema/beans" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <wsdl:import location="max.wsdl" namespace="http://cl.max.eq3.de/">
-    </wsdl:import>
+  </wsdl:import>
   <wsdl:binding name="MaxRemoteSoapBinding" type="ns1:IMaxRemote">
     <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="setRoomConfigDecalcification">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="setRoomConfigDecalcification">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="setRoomConfigDecalcificationResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ClientException">
+        <soap:fault name="ClientException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="setRoomAutoModeWithTemperature">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="setRoomAutoModeWithTemperature">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="setRoomAutoModeWithTemperatureResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ClientException">
+        <soap:fault name="ClientException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="setRoomConfigBoost">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="setRoomConfigBoost">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="setRoomConfigBoostResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ClientException">
+        <soap:fault name="ClientException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
     <wsdl:operation name="getMaxCubeState">
       <soap:operation soapAction="" style="document"/>
       <wsdl:input name="getMaxCubeState">
@@ -27,12 +63,132 @@
         <soap:fault name="ClientException" use="literal"/>
       </wsdl:fault>
     </wsdl:operation>
+    <wsdl:operation name="setRoomEcoTemperature">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="setRoomEcoTemperature">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="setRoomEcoTemperatureResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ClientException">
+        <soap:fault name="ClientException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="setRoomMaximumTemperature">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="setRoomMaximumTemperature">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="setRoomMaximumTemperatureResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ClientException">
+        <soap:fault name="ClientException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="activateProduct">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="activateProduct">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="activateProductResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ClientException">
+        <soap:fault name="ClientException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
     <wsdl:operation name="setClientCommands">
       <soap:operation soapAction="" style="document"/>
       <wsdl:input name="setClientCommands">
         <soap:body use="literal"/>
       </wsdl:input>
       <wsdl:output name="setClientCommandsResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ClientException">
+        <soap:fault name="ClientException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="setDeviceDisplaySetPointActual">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="setDeviceDisplaySetPointActual">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="setDeviceDisplaySetPointActualResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ClientException">
+        <soap:fault name="ClientException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="setRoomTemporaryMode">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="setRoomTemporaryMode">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="setRoomTemporaryModeResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ClientException">
+        <soap:fault name="ClientException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="checkProductActivation">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="checkProductActivation">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="checkProductActivationResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ClientException">
+        <soap:fault name="ClientException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="setRoomWindowOpenTemperature">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="setRoomWindowOpenTemperature">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="setRoomWindowOpenTemperatureResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ClientException">
+        <soap:fault name="ClientException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="setRoomTemperatureOffset">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="setRoomTemperatureOffset">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="setRoomTemperatureOffsetResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ClientException">
+        <soap:fault name="ClientException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="setRoomComfortTemperature">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="setRoomComfortTemperature">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="setRoomComfortTemperatureResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ClientException">
+        <soap:fault name="ClientException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="setRoomAutoMode">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="setRoomAutoMode">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="setRoomAutoModeResponse">
         <soap:body use="literal"/>
       </wsdl:output>
       <wsdl:fault name="ClientException">
@@ -69,6 +225,42 @@
         <soap:body use="literal"/>
       </wsdl:input>
       <wsdl:output name="getRemoteUserDataResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ClientException">
+        <soap:fault name="ClientException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="setRoomPermanentMode">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="setRoomPermanentMode">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="setRoomPermanentModeResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ClientException">
+        <soap:fault name="ClientException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="setRoomConfigValveOffset">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="setRoomConfigValveOffset">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="setRoomConfigValveOffsetResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ClientException">
+        <soap:fault name="ClientException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getExampleClientCommand">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getExampleClientCommand">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getExampleClientCommandResponse">
         <soap:body use="literal"/>
       </wsdl:output>
       <wsdl:fault name="ClientException">

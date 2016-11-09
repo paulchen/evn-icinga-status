@@ -1,605 +1,1101 @@
 <?xml version='1.0' encoding='UTF-8'?><wsdl:definitions name="IMaxRemote" targetNamespace="http://cl.max.eq3.de/" xmlns:ns1="http://cl.max.eq3.de/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <wsdl:types>
-<xsd:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://command.dto.cl.max.eq3.de" xmlns:ns0="http://dto.cl.max.eq3.de" xmlns:ns1="http://cl.max.eq3.de/" xmlns:tns="http://command.dto.cl.max.eq3.de" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-<xsd:import namespace="http://dto.cl.max.eq3.de"/>
-<xsd:import namespace="http://cl.max.eq3.de/"/>
-<xsd:complexType name="SetRoomConfigDecalcification">
-<xsd:complexContent>
-<xsd:extension base="tns:ClientCommand">
-<xsd:sequence>
-<xsd:element minOccurs="0" name="day" type="ns0:DayOfWeek"/>
-<xsd:element minOccurs="0" name="hour" type="xsd:int"/>
-<xsd:element minOccurs="0" name="roomId" type="xsd:int"/>
-</xsd:sequence>
-</xsd:extension>
-</xsd:complexContent>
-</xsd:complexType>
-<xsd:complexType name="SetRoomTemperatureOffset">
-<xsd:complexContent>
-<xsd:extension base="tns:ClientCommand">
-<xsd:sequence>
-<xsd:element minOccurs="0" name="deviceRadioAddresses" type="ns1:ArrayOfInt"/>
-<xsd:element minOccurs="0" name="offset" type="xsd:double"/>
-<xsd:element minOccurs="0" name="roomId" type="xsd:int"/>
-</xsd:sequence>
-</xsd:extension>
-</xsd:complexContent>
-</xsd:complexType>
-<xsd:complexType name="SetRoomAutoMode">
-<xsd:complexContent>
-<xsd:extension base="tns:ClientCommand">
-<xsd:sequence>
-<xsd:element minOccurs="0" name="roomId" type="xsd:int"/>
-</xsd:sequence>
-</xsd:extension>
-</xsd:complexContent>
-</xsd:complexType>
-<xsd:complexType name="SetRoomWeekTemperatureProfile">
-<xsd:complexContent>
-<xsd:extension base="tns:ClientCommand">
-<xsd:sequence>
-<xsd:element minOccurs="0" name="roomId" type="xsd:int"/>
-<xsd:element minOccurs="0" name="weekTemperatureProfile" type="ns0:WeekTemperatureProfile"/>
-</xsd:sequence>
-</xsd:extension>
-</xsd:complexContent>
-</xsd:complexType>
-<xsd:complexType name="SetRoomWindowOpenTemperature">
-<xsd:complexContent>
-<xsd:extension base="tns:ClientCommand">
-<xsd:sequence>
-<xsd:element minOccurs="0" name="roomId" type="xsd:int"/>
-<xsd:element minOccurs="0" name="temperature" type="xsd:double"/>
-</xsd:sequence>
-</xsd:extension>
-</xsd:complexContent>
-</xsd:complexType>
-<xsd:complexType name="SetRoomEcoTemperature">
-<xsd:complexContent>
-<xsd:extension base="tns:ClientCommand">
-<xsd:sequence>
-<xsd:element minOccurs="0" name="roomId" type="xsd:int"/>
-<xsd:element minOccurs="0" name="temperature" type="xsd:double"/>
-</xsd:sequence>
-</xsd:extension>
-</xsd:complexContent>
-</xsd:complexType>
-<xsd:complexType name="SetRoomConfigBoost">
-<xsd:complexContent>
-<xsd:extension base="tns:ClientCommand">
-<xsd:sequence>
-<xsd:element minOccurs="0" name="duration" type="xsd:int"/>
-<xsd:element minOccurs="0" name="roomId" type="xsd:int"/>
-<xsd:element minOccurs="0" name="valveAngle" type="xsd:int"/>
-</xsd:sequence>
-</xsd:extension>
-</xsd:complexContent>
-</xsd:complexType>
-<xsd:complexType name="SetRoomConfigValveOffset">
-<xsd:complexContent>
-<xsd:extension base="tns:ClientCommand">
-<xsd:sequence>
-<xsd:element minOccurs="0" name="deviceRadioAddresses" type="ns1:ArrayOfInt"/>
-<xsd:element minOccurs="0" name="roomId" type="xsd:int"/>
-<xsd:element minOccurs="0" name="valveMax" type="xsd:int"/>
-<xsd:element minOccurs="0" name="valveOffset" type="xsd:int"/>
-</xsd:sequence>
-</xsd:extension>
-</xsd:complexContent>
-</xsd:complexType>
-<xsd:complexType name="SetRoomPermanentMode">
-<xsd:complexContent>
-<xsd:extension base="tns:ClientCommand">
-<xsd:sequence>
-<xsd:element minOccurs="0" name="roomId" type="xsd:int"/>
-<xsd:element minOccurs="0" name="temperature" type="xsd:double"/>
-</xsd:sequence>
-</xsd:extension>
-</xsd:complexContent>
-</xsd:complexType>
-<xsd:complexType name="SetRoomAutoModeWithTemperature">
-<xsd:complexContent>
-<xsd:extension base="tns:ClientCommand">
-<xsd:sequence>
-<xsd:element minOccurs="0" name="roomId" type="xsd:int"/>
-<xsd:element minOccurs="0" name="temperature" type="xsd:double"/>
-</xsd:sequence>
-</xsd:extension>
-</xsd:complexContent>
-</xsd:complexType>
-<xsd:complexType abstract="true" name="ClientCommand">
-<xsd:sequence/>
-</xsd:complexType>
-<xsd:complexType name="SetRoomComfortTemperature">
-<xsd:complexContent>
-<xsd:extension base="tns:ClientCommand">
-<xsd:sequence>
-<xsd:element minOccurs="0" name="roomId" type="xsd:int"/>
-<xsd:element minOccurs="0" name="temperature" type="xsd:double"/>
-</xsd:sequence>
-</xsd:extension>
-</xsd:complexContent>
-</xsd:complexType>
-<xsd:complexType name="SetRoomTemporaryMode">
-<xsd:complexContent>
-<xsd:extension base="tns:ClientCommand">
-<xsd:sequence>
-<xsd:element minOccurs="0" name="date" type="xsd:dateTime"/>
-<xsd:element minOccurs="0" name="roomId" type="xsd:int"/>
-<xsd:element minOccurs="0" name="temperature" type="xsd:double"/>
-</xsd:sequence>
-</xsd:extension>
-</xsd:complexContent>
-</xsd:complexType>
-</xsd:schema>
-<xsd:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://bla.wtf" xmlns:ns0="http://command.dto.cl.max.eq3.de" xmlns:tns="http://bla.wtf" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-<xsd:import namespace="http://command.dto.cl.max.eq3.de"/>
-<xsd:complexType name="clientCommands">
-<xsd:sequence>
-<xsd:element maxOccurs="unbounded" minOccurs="0" name="ClientCommand" type="ns0:ClientCommand"/>
-</xsd:sequence>
-</xsd:complexType>
-</xsd:schema>
-<xsd:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://cl.max.eq3.de/" xmlns:ns0="http://dto.cl.max.eq3.de" xmlns:ns1="http://bla.wtf" xmlns:ns2="http://exception.cl.max.eq3.de" xmlns:tns="http://cl.max.eq3.de/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-<xsd:import namespace="http://dto.cl.max.eq3.de"/>
-<xsd:import namespace="http://bla.wtf"/>
-<xsd:complexType name="ArrayOfInt">
-<xsd:sequence>
-<xsd:element maxOccurs="unbounded" minOccurs="0" name="int" type="xsd:int"/>
-</xsd:sequence>
-</xsd:complexType>
-<xsd:element name="getMaxCubeState" type="tns:getMaxCubeState"/>
-<xsd:complexType name="getMaxCubeState">
-<xsd:sequence/>
-</xsd:complexType>
-<xsd:element name="getMaxCubeStateResponse" type="tns:getMaxCubeStateResponse"/>
-<xsd:complexType name="getMaxCubeStateResponse">
-<xsd:sequence>
-<xsd:element minOccurs="0" name="return" type="ns0:MaxCubeState"/>
-</xsd:sequence>
-</xsd:complexType>
-<xsd:element name="logout" type="tns:logout"/>
-<xsd:complexType name="logout">
-<xsd:sequence/>
-</xsd:complexType>
-<xsd:element name="logoutResponse" type="tns:logoutResponse"/>
-<xsd:complexType name="logoutResponse">
-<xsd:sequence>
-<xsd:element name="return" type="xsd:boolean"/>
-</xsd:sequence>
-</xsd:complexType>
-<xsd:element name="setClientCommands" type="tns:setClientCommands"/>
-<xsd:complexType name="setClientCommands">
-<xsd:sequence>
-<xsd:element minOccurs="0" name="clientCommands" type="ns1:clientCommands"/>
-</xsd:sequence>
-</xsd:complexType>
-<xsd:element name="setClientCommandsResponse" type="tns:setClientCommandsResponse"/>
-<xsd:complexType name="setClientCommandsResponse">
-<xsd:sequence/>
-</xsd:complexType>
-<xsd:element name="login" type="tns:login"/>
-<xsd:complexType name="login">
-<xsd:sequence>
-<xsd:element minOccurs="0" name="username" type="xsd:string"/>
-<xsd:element minOccurs="0" name="password" type="xsd:string"/>
-</xsd:sequence>
-</xsd:complexType>
-<xsd:element name="loginResponse" type="tns:loginResponse"/>
-<xsd:complexType name="loginResponse">
-<xsd:sequence>
-<xsd:element minOccurs="0" name="return" type="xsd:string"/>
-</xsd:sequence>
-</xsd:complexType>
-<xsd:element name="authenticateAgainstIdentityProvider" type="tns:authenticateAgainstIdentityProvider"/>
-<xsd:complexType name="authenticateAgainstIdentityProvider">
-<xsd:sequence>
-<xsd:element minOccurs="0" name="sessionToken" type="xsd:string"/>
-</xsd:sequence>
-</xsd:complexType>
-<xsd:element name="authenticateAgainstIdentityProviderResponse" type="tns:authenticateAgainstIdentityProviderResponse"/>
-<xsd:complexType name="authenticateAgainstIdentityProviderResponse">
-<xsd:sequence>
-<xsd:element name="return" type="xsd:boolean"/>
-</xsd:sequence>
-</xsd:complexType>
-<xsd:element name="getRemoteUserData" type="tns:getRemoteUserData"/>
-<xsd:complexType name="getRemoteUserData">
-<xsd:sequence>
-<xsd:element minOccurs="0" name="key" type="xsd:string"/>
-</xsd:sequence>
-</xsd:complexType>
-<xsd:element name="getRemoteUserDataResponse" type="tns:getRemoteUserDataResponse"/>
-<xsd:complexType name="getRemoteUserDataResponse">
-<xsd:sequence>
-<xsd:element minOccurs="0" name="return" type="xsd:string"/>
-</xsd:sequence>
-</xsd:complexType>
-<xsd:element name="ClientException" type="ns2:ClientException"/>
-</xsd:schema>
-<xsd:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://dto.cl.max.eq3.de" xmlns:tns="http://dto.cl.max.eq3.de" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-<xsd:complexType name="FirmwareInfo">
-<xsd:sequence>
-<xsd:element minOccurs="0" name="latestFirmwareVersion" type="xsd:string"/>
-<xsd:element minOccurs="0" name="leastCompatibleVersion" type="xsd:string"/>
-</xsd:sequence>
-</xsd:complexType>
-<xsd:simpleType name="DeviceStateInfo">
-<xsd:restriction base="xsd:string">
-<xsd:enumeration value="Valid"/>
-<xsd:enumeration value="NotInitialized"/>
-<xsd:enumeration value="OutOfDate"/>
-</xsd:restriction>
-</xsd:simpleType>
-<xsd:simpleType name="DayOfWeek">
-<xsd:restriction base="xsd:string">
-<xsd:enumeration value="Monday"/>
-<xsd:enumeration value="Tuesday"/>
-<xsd:enumeration value="Wednesday"/>
-<xsd:enumeration value="Thursday"/>
-<xsd:enumeration value="Friday"/>
-<xsd:enumeration value="Saturday"/>
-<xsd:enumeration value="Sunday"/>
-</xsd:restriction>
-</xsd:simpleType>
-<xsd:complexType name="Room">
-<xsd:sequence>
-<xsd:element minOccurs="0" name="boostDuration" type="xsd:int"/>
-<xsd:element minOccurs="0" name="boostValveAngle" type="xsd:int"/>
-<xsd:element minOccurs="0" name="comfortTemperature" type="xsd:double"/>
-<xsd:element minOccurs="0" name="controlMode" type="tns:RoomControlMode"/>
-<xsd:element minOccurs="0" name="decalcificationDay" type="tns:DayOfWeek"/>
-<xsd:element minOccurs="0" name="decalcificationHour" type="xsd:int"/>
-<xsd:element minOccurs="0" name="devices" type="tns:ArrayOfDevice"/>
-<xsd:element minOccurs="0" name="ecoTemperature" type="xsd:double"/>
-<xsd:element minOccurs="0" name="id" type="xsd:int"/>
-<xsd:element minOccurs="0" name="maximumNoOfHeatingThermostats" type="xsd:int"/>
-<xsd:element minOccurs="0" name="maximumNoOfShutterContacts" type="xsd:int"/>
-<xsd:element minOccurs="0" name="maximumNoOfWallMountedThermostats" type="xsd:int"/>
-<xsd:element minOccurs="0" name="maximumTemperature" type="xsd:double"/>
-<xsd:element minOccurs="0" name="name" type="xsd:string"/>
-<xsd:element minOccurs="0" name="order" type="xsd:int"/>
-<xsd:element minOccurs="0" name="setPointTemperature" type="xsd:double"/>
-<xsd:element minOccurs="0" name="setPointTemperatureValid" type="xsd:boolean"/>
-<xsd:element minOccurs="0" name="stateChanged" type="xsd:boolean"/>
-<xsd:element minOccurs="0" name="stateDirty" type="xsd:boolean"/>
-<xsd:element minOccurs="0" name="temperatureControllable" type="xsd:boolean"/>
-<xsd:element minOccurs="0" name="temperatureMode" type="tns:RoomTemperatureMode"/>
-<xsd:element minOccurs="0" name="temporaryModeStopDate" type="xsd:dateTime"/>
-<xsd:element minOccurs="0" name="weekTemperatureProfile" type="tns:WeekTemperatureProfile"/>
-<xsd:element minOccurs="0" name="windowOpenDuration" type="xsd:int"/>
-<xsd:element minOccurs="0" name="windowOpenTemperature" type="xsd:double"/>
-</xsd:sequence>
-</xsd:complexType>
-<xsd:complexType name="DayTemperatureProfile">
-<xsd:sequence>
-<xsd:element minOccurs="0" name="dayOfWeek" type="tns:DayOfWeek"/>
-<xsd:element minOccurs="0" name="switchPoints" type="tns:ArrayOfTemperatureProfileSwitchPoint"/>
-</xsd:sequence>
-</xsd:complexType>
-<xsd:complexType name="PushButtonConfiguration">
-<xsd:sequence>
-<xsd:element minOccurs="0" name="lowerKey" type="tns:PushButtonKeyConfiguration"/>
-<xsd:element minOccurs="0" name="upperKey" type="tns:PushButtonKeyConfiguration"/>
-</xsd:sequence>
-</xsd:complexType>
-<xsd:simpleType name="PushButtonKeyMode">
-<xsd:restriction base="xsd:string">
-<xsd:enumeration value="Auto"/>
-<xsd:enumeration value="AutoWithTemperature"/>
-<xsd:enumeration value="Eco"/>
-<xsd:enumeration value="Comfort"/>
-<xsd:enumeration value="Manual"/>
-</xsd:restriction>
-</xsd:simpleType>
-<xsd:complexType name="PushButtonDeviceState">
-<xsd:complexContent>
-<xsd:extension base="tns:DeviceState">
-<xsd:sequence>
-<xsd:element minOccurs="0" name="batteryLow" type="xsd:boolean"/>
-<xsd:element minOccurs="0" name="transmitError" type="xsd:boolean"/>
-</xsd:sequence>
-</xsd:extension>
-</xsd:complexContent>
-</xsd:complexType>
-<xsd:complexType name="UpdateStatus">
-<xsd:sequence>
-<xsd:element minOccurs="0" name="currentStep" type="xsd:int"/>
-<xsd:element minOccurs="0" name="finished" type="xsd:boolean"/>
-<xsd:element minOccurs="0" name="info" type="xsd:string"/>
-<xsd:element minOccurs="0" name="steps" type="xsd:int"/>
-</xsd:sequence>
-</xsd:complexType>
-<xsd:simpleType name="RoomTemperatureMode">
-<xsd:restriction base="xsd:string">
-<xsd:enumeration value="Eco"/>
-<xsd:enumeration value="Comfort"/>
-<xsd:enumeration value="Normal"/>
-<xsd:enumeration value="NotAvailable"/>
-</xsd:restriction>
-</xsd:simpleType>
-<xsd:complexType name="RemoteCredentials">
-<xsd:sequence>
-<xsd:element minOccurs="0" name="remoteAccessEnabled" type="xsd:boolean"/>
-<xsd:element minOccurs="0" name="userName" type="xsd:string"/>
-</xsd:sequence>
-</xsd:complexType>
-<xsd:complexType name="HeatingThermostatDeviceState">
-<xsd:complexContent>
-<xsd:extension base="tns:DeviceState">
-<xsd:sequence>
-<xsd:element minOccurs="0" name="batteryLow" type="xsd:boolean"/>
-<xsd:element minOccurs="0" name="setPointTemperature" type="xsd:double"/>
-<xsd:element minOccurs="0" name="temperatureOffset" type="xsd:double"/>
-<xsd:element minOccurs="0" name="transmitError" type="xsd:boolean"/>
-</xsd:sequence>
-</xsd:extension>
-</xsd:complexContent>
-</xsd:complexType>
-<xsd:complexType name="ArrayOfDevice">
-<xsd:sequence>
-<xsd:element maxOccurs="unbounded" minOccurs="0" name="Device" type="tns:Device"/>
-</xsd:sequence>
-</xsd:complexType>
-<xsd:complexType name="WeekTemperatureProfile">
-<xsd:sequence>
-<xsd:element minOccurs="0" name="dayTemperatureProfiles" type="tns:ArrayOfDayTemperatureProfile"/>
-</xsd:sequence>
-</xsd:complexType>
-<xsd:complexType name="ArrayOfDayTemperatureProfile">
-<xsd:sequence>
-<xsd:element maxOccurs="unbounded" minOccurs="0" name="DayTemperatureProfile" type="tns:DayTemperatureProfile"/>
-</xsd:sequence>
-</xsd:complexType>
-<xsd:simpleType name="RoomControlMode">
-<xsd:restriction base="xsd:string">
-<xsd:enumeration value="Auto"/>
-<xsd:enumeration value="Permanently"/>
-<xsd:enumeration value="Temporary"/>
-<xsd:enumeration value="NotAvailable"/>
-</xsd:restriction>
-</xsd:simpleType>
-<xsd:complexType name="ArrayOfRoom">
-<xsd:sequence>
-<xsd:element maxOccurs="unbounded" minOccurs="0" name="Room" type="tns:Room"/>
-</xsd:sequence>
-</xsd:complexType>
-<xsd:complexType name="House">
-<xsd:sequence>
-<xsd:element minOccurs="0" name="devices" type="tns:ArrayOfDevice"/>
-<xsd:element minOccurs="0" name="id" type="xsd:int"/>
-</xsd:sequence>
-</xsd:complexType>
-<xsd:complexType name="MaxCubeState">
-<xsd:sequence>
-<xsd:element minOccurs="0" name="NTPCounter" type="xsd:int"/>
-<xsd:element minOccurs="0" name="cubeDate" type="xsd:dateTime"/>
-<xsd:element minOccurs="0" name="cubeLastPing" type="tns:MaxCubeLastPing"/>
-<xsd:element minOccurs="0" name="daylightSaving" type="xsd:boolean"/>
-<xsd:element minOccurs="0" name="firmwareVersion" type="xsd:int"/>
-<xsd:element minOccurs="0" name="house" type="tns:House"/>
-<xsd:element minOccurs="0" name="pushButtonConfiguration" type="tns:PushButtonConfiguration"/>
-<xsd:element minOccurs="0" name="rooms" type="tns:ArrayOfRoom"/>
-<xsd:element minOccurs="0" name="stateCubeTime" type="xsd:int"/>
-</xsd:sequence>
-</xsd:complexType>
-<xsd:complexType name="DaylightSavingConfiguration">
-<xsd:sequence>
-<xsd:element minOccurs="0" name="dayOfWeek" type="tns:DayOfWeek"/>
-<xsd:element minOccurs="0" name="hourOfDay" type="xsd:int"/>
-<xsd:element minOccurs="0" name="month" type="xsd:int"/>
-<xsd:element minOccurs="0" name="name" type="xsd:string"/>
-<xsd:element minOccurs="0" name="offsetToUTC" type="xsd:int"/>
-</xsd:sequence>
-</xsd:complexType>
-<xsd:complexType name="ArrayOfTemperatureProfileSwitchPoint">
-<xsd:sequence>
-<xsd:element maxOccurs="unbounded" minOccurs="0" name="TemperatureProfileSwitchPoint" type="tns:TemperatureProfileSwitchPoint"/>
-</xsd:sequence>
-</xsd:complexType>
-<xsd:complexType name="SoftwareInformation">
-<xsd:sequence>
-<xsd:element minOccurs="0" name="downloadURL" type="xsd:string"/>
-<xsd:element minOccurs="0" name="updateAvailable" type="xsd:boolean"/>
-<xsd:element minOccurs="0" name="version" type="xsd:string"/>
-</xsd:sequence>
-</xsd:complexType>
-<xsd:complexType name="MaxCubeLastPing">
-<xsd:sequence>
-<xsd:element minOccurs="0" name="date" type="xsd:dateTime"/>
-<xsd:element minOccurs="0" name="outdated" type="xsd:boolean"/>
-</xsd:sequence>
-</xsd:complexType>
-<xsd:complexType name="TemperatureProfileSwitchPoint">
-<xsd:sequence>
-<xsd:element minOccurs="0" name="stop" type="xsd:dateTime"/>
-<xsd:element minOccurs="0" name="temperature" type="xsd:double"/>
-</xsd:sequence>
-</xsd:complexType>
-<xsd:complexType name="ShutterContactDeviceState">
-<xsd:complexContent>
-<xsd:extension base="tns:DeviceState">
-<xsd:sequence>
-<xsd:element minOccurs="0" name="batteryLow" type="xsd:boolean"/>
-<xsd:element minOccurs="0" name="transmitError" type="xsd:boolean"/>
-<xsd:element minOccurs="0" name="windowOpen" type="xsd:boolean"/>
-</xsd:sequence>
-</xsd:extension>
-</xsd:complexContent>
-</xsd:complexType>
-<xsd:complexType name="PushButtonKeyConfiguration">
-<xsd:sequence>
-<xsd:element minOccurs="0" name="mode" type="tns:PushButtonKeyMode"/>
-<xsd:element minOccurs="0" name="temperature" type="xsd:double"/>
-</xsd:sequence>
-</xsd:complexType>
-<xsd:complexType name="DeviceState">
-<xsd:sequence/>
-</xsd:complexType>
-<xsd:complexType name="NewDevice">
-<xsd:sequence>
-<xsd:element minOccurs="0" name="deviceType" type="tns:DeviceType"/>
-<xsd:element minOccurs="0" name="radioAddress" type="xsd:int"/>
-<xsd:element minOccurs="0" name="serialNumber" type="xsd:string"/>
-</xsd:sequence>
-</xsd:complexType>
-<xsd:complexType name="CubeInfo">
-<xsd:sequence>
-<xsd:element minOccurs="0" name="firmwareVersion" type="xsd:int"/>
-<xsd:element minOccurs="0" name="inBootLoader" type="xsd:boolean"/>
-<xsd:element minOccurs="0" name="ipAddress" type="xsd:string"/>
-<xsd:element minOccurs="0" name="serialNumber" type="xsd:string"/>
-</xsd:sequence>
-</xsd:complexType>
-<xsd:simpleType name="DeviceType">
-<xsd:restriction base="xsd:string">
-<xsd:enumeration value="GenericDevice"/>
-<xsd:enumeration value="ShutterContact"/>
-<xsd:enumeration value="HeatingThermostat"/>
-<xsd:enumeration value="WallMountedThermostat"/>
-<xsd:enumeration value="PushButton"/>
-</xsd:restriction>
-</xsd:simpleType>
-<xsd:complexType name="Device">
-<xsd:sequence>
-<xsd:element minOccurs="0" name="deviceType" type="tns:DeviceType"/>
-<xsd:element minOccurs="0" name="name" type="xsd:string"/>
-<xsd:element minOccurs="0" name="radioAddress" type="xsd:int"/>
-<xsd:element minOccurs="0" name="radioState" type="tns:RadioState"/>
-<xsd:element minOccurs="0" name="serialNumber" type="xsd:string"/>
-<xsd:element minOccurs="0" name="state" type="tns:DeviceState"/>
-<xsd:element minOccurs="0" name="stateInfo" type="tns:DeviceStateInfo"/>
-</xsd:sequence>
-</xsd:complexType>
-<xsd:simpleType name="RadioState">
-<xsd:restriction base="xsd:string">
-<xsd:enumeration value="Ok"/>
-<xsd:enumeration value="Error"/>
-<xsd:enumeration value="ControlFailed"/>
-<xsd:enumeration value="ConfigFailed"/>
-<xsd:enumeration value="AssignFailed"/>
-<xsd:enumeration value="DeleteFailed"/>
-</xsd:restriction>
-</xsd:simpleType>
-<xsd:complexType name="MaxCubeAirtimeStatus">
-<xsd:sequence>
-<xsd:element minOccurs="0" name="commandDiscarded" type="xsd:boolean"/>
-<xsd:element minOccurs="0" name="cubeDate" type="xsd:dateTime"/>
-<xsd:element minOccurs="0" name="dutyCycle" type="xsd:int"/>
-<xsd:element minOccurs="0" name="freeMemorySlot" type="xsd:int"/>
-</xsd:sequence>
-</xsd:complexType>
-</xsd:schema>
-<xsd:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://exception.cl.max.eq3.de" xmlns:tns="http://exception.cl.max.eq3.de" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-<xsd:complexType name="ClientException">
-<xsd:sequence>
-<xsd:element minOccurs="0" name="errorCode" type="xsd:string"/>
-<xsd:element minOccurs="0" name="exceptionMessage" type="xsd:string"/>
-<xsd:element minOccurs="0" name="exceptionType" type="xsd:string"/>
-</xsd:sequence>
-</xsd:complexType>
-</xsd:schema>
+    <xsd:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://command.dto.cl.max.eq3.de" xmlns:ns0="http://cl.max.eq3.de/" xmlns:ns1="http://dto.cl.max.eq3.de" xmlns:tns="http://command.dto.cl.max.eq3.de" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <xsd:import namespace="http://cl.max.eq3.de/"/>
+      <xsd:import namespace="http://dto.cl.max.eq3.de"/>
+      <xsd:complexType name="SetRoomConfigBoost">
+        <xsd:complexContent>
+          <xsd:extension base="tns:ClientCommand">
+            <xsd:sequence>
+              <xsd:element minOccurs="0" name="duration" type="xsd:int"/>
+              <xsd:element minOccurs="0" name="roomId" type="xsd:int"/>
+              <xsd:element minOccurs="0" name="valveAngle" type="xsd:int"/>
+            </xsd:sequence>
+          </xsd:extension>
+        </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:complexType name="SetRoomComfortTemperature">
+        <xsd:complexContent>
+          <xsd:extension base="tns:ClientCommand">
+            <xsd:sequence>
+              <xsd:element minOccurs="0" name="roomId" type="xsd:int"/>
+              <xsd:element minOccurs="0" name="temperature" type="xsd:double"/>
+            </xsd:sequence>
+          </xsd:extension>
+        </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:complexType name="SetRoomWindowOpenTemperature">
+        <xsd:complexContent>
+          <xsd:extension base="tns:ClientCommand">
+            <xsd:sequence>
+              <xsd:element minOccurs="0" name="roomId" type="xsd:int"/>
+              <xsd:element minOccurs="0" name="temperature" type="xsd:double"/>
+            </xsd:sequence>
+          </xsd:extension>
+        </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:complexType name="SetRoomAutoMode">
+        <xsd:complexContent>
+          <xsd:extension base="tns:ClientCommand">
+            <xsd:sequence>
+              <xsd:element minOccurs="0" name="roomId" type="xsd:int"/>
+            </xsd:sequence>
+          </xsd:extension>
+        </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:complexType name="SetRoomConfigValveOffset">
+        <xsd:complexContent>
+          <xsd:extension base="tns:ClientCommand">
+            <xsd:sequence>
+              <xsd:element minOccurs="0" name="deviceRadioAddresses" nillable="true" type="ns0:ArrayOfInt"/>
+              <xsd:element minOccurs="0" name="roomId" type="xsd:int"/>
+              <xsd:element minOccurs="0" name="valveMax" type="xsd:int"/>
+              <xsd:element minOccurs="0" name="valveOffset" type="xsd:int"/>
+            </xsd:sequence>
+          </xsd:extension>
+        </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:complexType name="SetRoomEcoTemperature">
+        <xsd:complexContent>
+          <xsd:extension base="tns:ClientCommand">
+            <xsd:sequence>
+              <xsd:element minOccurs="0" name="roomId" type="xsd:int"/>
+              <xsd:element minOccurs="0" name="temperature" type="xsd:double"/>
+            </xsd:sequence>
+          </xsd:extension>
+        </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:complexType name="SetRoomPermanentMode">
+        <xsd:complexContent>
+          <xsd:extension base="tns:ClientCommand">
+            <xsd:sequence>
+              <xsd:element minOccurs="0" name="roomId" type="xsd:int"/>
+              <xsd:element minOccurs="0" name="temperature" type="xsd:double"/>
+            </xsd:sequence>
+          </xsd:extension>
+        </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:complexType name="SetRoomTemperatureOffset">
+        <xsd:complexContent>
+          <xsd:extension base="tns:ClientCommand">
+            <xsd:sequence>
+              <xsd:element minOccurs="0" name="deviceRadioAddresses" nillable="true" type="ns0:ArrayOfInt"/>
+              <xsd:element minOccurs="0" name="offset" type="xsd:double"/>
+              <xsd:element minOccurs="0" name="roomId" type="xsd:int"/>
+            </xsd:sequence>
+          </xsd:extension>
+        </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:complexType name="SetRoomAutoModeWithTemperature">
+        <xsd:complexContent>
+          <xsd:extension base="tns:ClientCommand">
+            <xsd:sequence>
+              <xsd:element minOccurs="0" name="roomId" type="xsd:int"/>
+              <xsd:element minOccurs="0" name="temperature" type="xsd:double"/>
+            </xsd:sequence>
+          </xsd:extension>
+        </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:complexType name="SetDeviceDisplaySetPointActual">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="deviceRadioAddress" type="xsd:int"/>
+          <xsd:element minOccurs="0" name="displayActual" type="xsd:boolean"/>
+          <xsd:element minOccurs="0" name="roomId" type="xsd:int"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="SetRoomWeekTemperatureProfile">
+        <xsd:complexContent>
+          <xsd:extension base="tns:ClientCommand">
+            <xsd:sequence>
+              <xsd:element minOccurs="0" name="roomId" type="xsd:int"/>
+              <xsd:element minOccurs="0" name="weekTemperatureProfile" nillable="true" type="ns1:WeekTemperatureProfile"/>
+            </xsd:sequence>
+          </xsd:extension>
+        </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:complexType abstract="true" name="ClientCommand">
+        <xsd:sequence/>
+      </xsd:complexType>
+      <xsd:complexType name="SetRoomConfigDecalcification">
+        <xsd:complexContent>
+          <xsd:extension base="tns:ClientCommand">
+            <xsd:sequence>
+              <xsd:element minOccurs="0" name="day" nillable="true" type="ns1:DayOfWeek"/>
+              <xsd:element minOccurs="0" name="hour" type="xsd:int"/>
+              <xsd:element minOccurs="0" name="roomId" type="xsd:int"/>
+            </xsd:sequence>
+          </xsd:extension>
+        </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:complexType name="SetRoomTemporaryMode">
+        <xsd:complexContent>
+          <xsd:extension base="tns:ClientCommand">
+            <xsd:sequence>
+              <xsd:element minOccurs="0" name="date" type="xsd:dateTime"/>
+              <xsd:element minOccurs="0" name="roomId" type="xsd:int"/>
+              <xsd:element minOccurs="0" name="temperature" type="xsd:double"/>
+            </xsd:sequence>
+          </xsd:extension>
+        </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:complexType name="SetRoomMaximumTemperature">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="roomId" type="xsd:int"/>
+          <xsd:element minOccurs="0" name="temperature" type="xsd:double"/>
+        </xsd:sequence>
+      </xsd:complexType>
+    </xsd:schema>
+    <xsd:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://command.dto.cl.max.eq3.de" xmlns:ns0="http://command.dto.cl.max.eq3.de" xmlns:tns="http://command.dto.cl.max.eq3.de" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <xsd:import namespace="http://command.dto.cl.max.eq3.de"/>
+      <xsd:complexType name="clientCommands">
+        <xsd:sequence>
+          <xsd:element maxOccurs="unbounded" minOccurs="0" name="ClientCommand" nillable="true" type="ns0:ClientCommand"/>
+        </xsd:sequence>
+      </xsd:complexType>
+    </xsd:schema>
+    <xsd:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://cl.max.eq3.de/" xmlns:ns0="http://command.dto.cl.max.eq3.de" xmlns:ns1="http://dto.cl.max.eq3.de" xmlns:ns2="http://command.dto.cl.max.eq3.de" xmlns:ns3="http://exception.cl.max.eq3.de" xmlns:tns="http://cl.max.eq3.de/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <xsd:import namespace="http://command.dto.cl.max.eq3.de"/>
+      <xsd:import namespace="http://dto.cl.max.eq3.de"/>
+      <xsd:complexType name="ArrayOfInt">
+        <xsd:sequence>
+          <xsd:element maxOccurs="unbounded" minOccurs="0" name="int" nillable="true" type="xsd:int"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="string2stringMap">
+        <xsd:sequence>
+          <xsd:element maxOccurs="unbounded" minOccurs="0" name="entry">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="key" type="xsd:string"/>
+                <xsd:element minOccurs="0" name="value" type="xsd:string"/>
+              </xsd:sequence>
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="setRoomConfigDecalcification" type="tns:setRoomConfigDecalcification"/>
+      <xsd:complexType name="setRoomConfigDecalcification">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="arg0" type="ns0:SetRoomConfigDecalcification"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="setRoomConfigDecalcificationResponse" type="tns:setRoomConfigDecalcificationResponse"/>
+      <xsd:complexType name="setRoomConfigDecalcificationResponse">
+        <xsd:sequence>
+          <xsd:element name="return" type="xsd:boolean"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="setRoomAutoModeWithTemperature" type="tns:setRoomAutoModeWithTemperature"/>
+      <xsd:complexType name="setRoomAutoModeWithTemperature">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="arg0" type="ns0:SetRoomAutoModeWithTemperature"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="setRoomAutoModeWithTemperatureResponse" type="tns:setRoomAutoModeWithTemperatureResponse"/>
+      <xsd:complexType name="setRoomAutoModeWithTemperatureResponse">
+        <xsd:sequence>
+          <xsd:element name="return" type="xsd:boolean"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="setRoomConfigBoost" type="tns:setRoomConfigBoost"/>
+      <xsd:complexType name="setRoomConfigBoost">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="arg0" type="ns0:SetRoomConfigBoost"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="setRoomConfigBoostResponse" type="tns:setRoomConfigBoostResponse"/>
+      <xsd:complexType name="setRoomConfigBoostResponse">
+        <xsd:sequence>
+          <xsd:element name="return" type="xsd:boolean"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="getMaxCubeState" type="tns:getMaxCubeState"/>
+      <xsd:complexType name="getMaxCubeState">
+        <xsd:sequence/>
+      </xsd:complexType>
+      <xsd:element name="getMaxCubeStateResponse" type="tns:getMaxCubeStateResponse"/>
+      <xsd:complexType name="getMaxCubeStateResponse">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="return" type="ns1:MaxCubeState"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="logout" type="tns:logout"/>
+      <xsd:complexType name="logout">
+        <xsd:sequence/>
+      </xsd:complexType>
+      <xsd:element name="logoutResponse" type="tns:logoutResponse"/>
+      <xsd:complexType name="logoutResponse">
+        <xsd:sequence>
+          <xsd:element name="return" type="xsd:boolean"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="setRoomEcoTemperature" type="tns:setRoomEcoTemperature"/>
+      <xsd:complexType name="setRoomEcoTemperature">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="arg0" type="ns0:SetRoomEcoTemperature"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="setRoomEcoTemperatureResponse" type="tns:setRoomEcoTemperatureResponse"/>
+      <xsd:complexType name="setRoomEcoTemperatureResponse">
+        <xsd:sequence>
+          <xsd:element name="return" type="xsd:boolean"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="setRoomMaximumTemperature" type="tns:setRoomMaximumTemperature"/>
+      <xsd:complexType name="setRoomMaximumTemperature">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="arg0" type="ns0:SetRoomMaximumTemperature"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="setRoomMaximumTemperatureResponse" type="tns:setRoomMaximumTemperatureResponse"/>
+      <xsd:complexType name="setRoomMaximumTemperatureResponse">
+        <xsd:sequence>
+          <xsd:element name="return" type="xsd:boolean"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="activateProduct" type="tns:activateProduct"/>
+      <xsd:complexType name="activateProduct">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="productKey" nillable="true" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="activateProductResponse" type="tns:activateProductResponse"/>
+      <xsd:complexType name="activateProductResponse">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="return" type="ns1:ProductActivation"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="setClientCommands" type="tns:setClientCommands"/>
+      <xsd:complexType name="setClientCommands">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="clientCommands" type="ns2:clientCommands"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="setClientCommandsResponse" type="tns:setClientCommandsResponse"/>
+      <xsd:complexType name="setClientCommandsResponse">
+        <xsd:sequence/>
+      </xsd:complexType>
+      <xsd:element name="setDeviceDisplaySetPointActual" type="tns:setDeviceDisplaySetPointActual"/>
+      <xsd:complexType name="setDeviceDisplaySetPointActual">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="arg0" type="ns0:SetDeviceDisplaySetPointActual"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="setDeviceDisplaySetPointActualResponse" type="tns:setDeviceDisplaySetPointActualResponse"/>
+      <xsd:complexType name="setDeviceDisplaySetPointActualResponse">
+        <xsd:sequence>
+          <xsd:element name="return" type="xsd:boolean"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="setRoomTemporaryMode" type="tns:setRoomTemporaryMode"/>
+      <xsd:complexType name="setRoomTemporaryMode">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="arg0" type="ns0:SetRoomTemporaryMode"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="setRoomTemporaryModeResponse" type="tns:setRoomTemporaryModeResponse"/>
+      <xsd:complexType name="setRoomTemporaryModeResponse">
+        <xsd:sequence>
+          <xsd:element name="return" type="xsd:boolean"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="checkProductActivation" type="tns:checkProductActivation"/>
+      <xsd:complexType name="checkProductActivation">
+        <xsd:sequence/>
+      </xsd:complexType>
+      <xsd:element name="checkProductActivationResponse" type="tns:checkProductActivationResponse"/>
+      <xsd:complexType name="checkProductActivationResponse">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="return" type="ns1:ProductInformation"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="setRoomWindowOpenTemperature" type="tns:setRoomWindowOpenTemperature"/>
+      <xsd:complexType name="setRoomWindowOpenTemperature">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="arg0" type="ns0:SetRoomWindowOpenTemperature"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="setRoomWindowOpenTemperatureResponse" type="tns:setRoomWindowOpenTemperatureResponse"/>
+      <xsd:complexType name="setRoomWindowOpenTemperatureResponse">
+        <xsd:sequence>
+          <xsd:element name="return" type="xsd:boolean"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="setRoomTemperatureOffset" type="tns:setRoomTemperatureOffset"/>
+      <xsd:complexType name="setRoomTemperatureOffset">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="arg0" type="ns0:SetRoomTemperatureOffset"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="setRoomTemperatureOffsetResponse" type="tns:setRoomTemperatureOffsetResponse"/>
+      <xsd:complexType name="setRoomTemperatureOffsetResponse">
+        <xsd:sequence>
+          <xsd:element name="return" type="xsd:boolean"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="setRoomComfortTemperature" type="tns:setRoomComfortTemperature"/>
+      <xsd:complexType name="setRoomComfortTemperature">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="arg0" type="ns0:SetRoomComfortTemperature"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="setRoomComfortTemperatureResponse" type="tns:setRoomComfortTemperatureResponse"/>
+      <xsd:complexType name="setRoomComfortTemperatureResponse">
+        <xsd:sequence>
+          <xsd:element name="return" type="xsd:boolean"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="setRoomAutoMode" type="tns:setRoomAutoMode"/>
+      <xsd:complexType name="setRoomAutoMode">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="arg0" type="ns0:SetRoomAutoMode"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="setRoomAutoModeResponse" type="tns:setRoomAutoModeResponse"/>
+      <xsd:complexType name="setRoomAutoModeResponse">
+        <xsd:sequence>
+          <xsd:element name="return" type="xsd:boolean"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="login" type="tns:login"/>
+      <xsd:complexType name="login">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="username" nillable="true" type="xsd:string"/>
+          <xsd:element minOccurs="0" name="password" nillable="true" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="loginResponse" type="tns:loginResponse"/>
+      <xsd:complexType name="loginResponse">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="return" nillable="true" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="authenticateAgainstIdentityProvider" type="tns:authenticateAgainstIdentityProvider"/>
+      <xsd:complexType name="authenticateAgainstIdentityProvider">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="sessionToken" nillable="true" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="authenticateAgainstIdentityProviderResponse" type="tns:authenticateAgainstIdentityProviderResponse"/>
+      <xsd:complexType name="authenticateAgainstIdentityProviderResponse">
+        <xsd:sequence>
+          <xsd:element name="return" type="xsd:boolean"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="getRemoteUserData" type="tns:getRemoteUserData"/>
+      <xsd:complexType name="getRemoteUserData">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="key" nillable="true" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="getRemoteUserDataResponse" type="tns:getRemoteUserDataResponse"/>
+      <xsd:complexType name="getRemoteUserDataResponse">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="return" nillable="true" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="setRoomPermanentMode" type="tns:setRoomPermanentMode"/>
+      <xsd:complexType name="setRoomPermanentMode">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="arg0" type="ns0:SetRoomPermanentMode"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="setRoomPermanentModeResponse" type="tns:setRoomPermanentModeResponse"/>
+      <xsd:complexType name="setRoomPermanentModeResponse">
+        <xsd:sequence>
+          <xsd:element name="return" type="xsd:boolean"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="setRoomConfigValveOffset" type="tns:setRoomConfigValveOffset"/>
+      <xsd:complexType name="setRoomConfigValveOffset">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="arg0" type="ns0:SetRoomConfigValveOffset"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="setRoomConfigValveOffsetResponse" type="tns:setRoomConfigValveOffsetResponse"/>
+      <xsd:complexType name="setRoomConfigValveOffsetResponse">
+        <xsd:sequence>
+          <xsd:element name="return" type="xsd:boolean"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="getExampleClientCommand" type="tns:getExampleClientCommand"/>
+      <xsd:complexType name="getExampleClientCommand">
+        <xsd:sequence/>
+      </xsd:complexType>
+      <xsd:element name="getExampleClientCommandResponse" type="tns:getExampleClientCommandResponse"/>
+      <xsd:complexType name="getExampleClientCommandResponse">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="return" type="ns0:ClientCommand"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="ClientException" nillable="true" type="ns3:ClientException"/>
+    </xsd:schema>
+    <xsd:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://dto.cl.max.eq3.de" xmlns:ns0="http://cl.max.eq3.de/" xmlns:tns="http://dto.cl.max.eq3.de" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <xsd:import namespace="http://cl.max.eq3.de/"/>
+      <xsd:complexType name="SoftwareInformation">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="downloadURL" nillable="true" type="xsd:string"/>
+          <xsd:element minOccurs="0" name="updateAvailable" type="xsd:boolean"/>
+          <xsd:element minOccurs="0" name="version" nillable="true" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="PushButtonDeviceState">
+        <xsd:complexContent>
+          <xsd:extension base="tns:DeviceState">
+            <xsd:sequence>
+              <xsd:element minOccurs="0" name="batteryLow" type="xsd:boolean"/>
+              <xsd:element minOccurs="0" name="transmitError" type="xsd:boolean"/>
+            </xsd:sequence>
+          </xsd:extension>
+        </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:complexType name="MaxCubeState">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="NTPCounter" type="xsd:int"/>
+          <xsd:element minOccurs="0" name="cubeDate" type="xsd:dateTime"/>
+          <xsd:element minOccurs="0" name="cubeLastPing" nillable="true" type="tns:MaxCubeLastPing"/>
+          <xsd:element minOccurs="0" name="daylightSaving" type="xsd:boolean"/>
+          <xsd:element minOccurs="0" name="firmwareVersion" type="xsd:int"/>
+          <xsd:element minOccurs="0" name="house" nillable="true" type="tns:House"/>
+          <xsd:element minOccurs="0" name="pushButtonConfiguration" nillable="true" type="tns:PushButtonConfiguration"/>
+          <xsd:element minOccurs="0" name="rfAddress" type="xsd:int"/>
+          <xsd:element minOccurs="0" name="rooms" nillable="true" type="tns:ArrayOfRoom"/>
+          <xsd:element minOccurs="0" name="serialNumber" nillable="true" type="xsd:string"/>
+          <xsd:element minOccurs="0" name="stateCubeTime" type="xsd:int"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="PushButtonConfiguration">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="lowerKey" nillable="true" type="tns:PushButtonKeyConfiguration"/>
+          <xsd:element minOccurs="0" name="upperKey" nillable="true" type="tns:PushButtonKeyConfiguration"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:simpleType name="PushButtonKeyMode">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="Auto"/>
+          <xsd:enumeration value="AutoWithTemperature"/>
+          <xsd:enumeration value="Eco"/>
+          <xsd:enumeration value="Comfort"/>
+          <xsd:enumeration value="Manual"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:complexType name="ProductInformation">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="activated" type="xsd:boolean"/>
+          <xsd:element minOccurs="0" name="activationDate" type="xsd:dateTime"/>
+          <xsd:element minOccurs="0" name="businessName" type="xsd:string"/>
+          <xsd:element minOccurs="0" name="daysTillExpiry" type="xsd:int"/>
+          <xsd:element minOccurs="0" name="expiryDate" type="xsd:dateTime"/>
+          <xsd:element minOccurs="0" name="informAboutExpiry" type="xsd:boolean"/>
+          <xsd:element minOccurs="0" name="informationText" type="ns0:string2stringMap"/>
+          <xsd:element minOccurs="0" name="mock" type="xsd:boolean"/>
+          <xsd:element minOccurs="0" name="webShopURI" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ProductActivation">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="activated" type="xsd:boolean"/>
+          <xsd:element minOccurs="0" name="criteriaKeyViolation" nillable="true" type="xsd:string"/>
+          <xsd:element minOccurs="0" name="daysTillExpiry" type="xsd:int"/>
+          <xsd:element minOccurs="0" name="expiryDate" type="xsd:dateTime"/>
+          <xsd:element minOccurs="0" name="mock" type="xsd:boolean"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:simpleType name="RoomTemperatureMode">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="Eco"/>
+          <xsd:enumeration value="Comfort"/>
+          <xsd:enumeration value="Normal"/>
+          <xsd:enumeration value="NotAvailable"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:complexType name="NewDevice">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="deviceType" nillable="true" type="tns:DeviceType"/>
+          <xsd:element minOccurs="0" name="radioAddress" type="xsd:int"/>
+          <xsd:element minOccurs="0" name="serialNumber" nillable="true" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ArrayOfTemperatureProfileSwitchPoint">
+        <xsd:sequence>
+          <xsd:element maxOccurs="unbounded" minOccurs="0" name="TemperatureProfileSwitchPoint" nillable="true" type="tns:TemperatureProfileSwitchPoint"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ShutterContactDeviceState">
+        <xsd:complexContent>
+          <xsd:extension base="tns:DeviceState">
+            <xsd:sequence>
+              <xsd:element minOccurs="0" name="batteryLow" type="xsd:boolean"/>
+              <xsd:element minOccurs="0" name="transmitError" type="xsd:boolean"/>
+              <xsd:element minOccurs="0" name="windowOpen" type="xsd:boolean"/>
+            </xsd:sequence>
+          </xsd:extension>
+        </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:complexType name="PushButtonKeyConfiguration">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="mode" nillable="true" type="tns:PushButtonKeyMode"/>
+          <xsd:element minOccurs="0" name="temperature" type="xsd:double"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:simpleType name="DayOfWeek">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="Monday"/>
+          <xsd:enumeration value="Tuesday"/>
+          <xsd:enumeration value="Wednesday"/>
+          <xsd:enumeration value="Thursday"/>
+          <xsd:enumeration value="Friday"/>
+          <xsd:enumeration value="Saturday"/>
+          <xsd:enumeration value="Sunday"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:complexType name="WeekTemperatureProfile">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="dayTemperatureProfiles" nillable="true" type="tns:ArrayOfDayTemperatureProfile"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="DayTemperatureProfile">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="dayOfWeek" nillable="true" type="tns:DayOfWeek"/>
+          <xsd:element minOccurs="0" name="switchPoints" nillable="true" type="tns:ArrayOfTemperatureProfileSwitchPoint"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="TemperatureProfileSwitchPoint">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="stop" type="xsd:dateTime"/>
+          <xsd:element minOccurs="0" name="temperature" type="xsd:double"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:simpleType name="DeviceType">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="GenericDevice"/>
+          <xsd:enumeration value="ShutterContact"/>
+          <xsd:enumeration value="HeatingThermostat"/>
+          <xsd:enumeration value="WallMountedThermostat"/>
+          <xsd:enumeration value="PushButton"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:complexType name="ArrayOfDevice">
+        <xsd:sequence>
+          <xsd:element maxOccurs="unbounded" minOccurs="0" name="Device" nillable="true" type="tns:Device"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType abstract="true" name="DeviceState">
+        <xsd:sequence/>
+      </xsd:complexType>
+      <xsd:simpleType name="RadioState">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="Ok"/>
+          <xsd:enumeration value="Error"/>
+          <xsd:enumeration value="ControlFailed"/>
+          <xsd:enumeration value="ConfigFailed"/>
+          <xsd:enumeration value="AssignFailed"/>
+          <xsd:enumeration value="DeleteFailed"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:complexType name="MaxCubeAirtimeStatus">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="commandDiscarded" type="xsd:boolean"/>
+          <xsd:element minOccurs="0" name="cubeDate" type="xsd:dateTime"/>
+          <xsd:element minOccurs="0" name="dutyCycle" type="xsd:int"/>
+          <xsd:element minOccurs="0" name="freeMemorySlot" type="xsd:int"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ArrayOfRoom">
+        <xsd:sequence>
+          <xsd:element maxOccurs="unbounded" minOccurs="0" name="Room" nillable="true" type="tns:Room"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="FirmwareInfo">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="latestFirmwareVersion" nillable="true" type="xsd:string"/>
+          <xsd:element minOccurs="0" name="leastCompatibleVersion" nillable="true" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ArrayOfDayTemperatureProfile">
+        <xsd:sequence>
+          <xsd:element maxOccurs="unbounded" minOccurs="0" name="DayTemperatureProfile" nillable="true" type="tns:DayTemperatureProfile"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="Device">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="deviceType" nillable="true" type="tns:DeviceType"/>
+          <xsd:element minOccurs="0" name="name" nillable="true" type="xsd:string"/>
+          <xsd:element minOccurs="0" name="radioAddress" type="xsd:int"/>
+          <xsd:element minOccurs="0" name="radioState" nillable="true" type="tns:RadioState"/>
+          <xsd:element minOccurs="0" name="serialNumber" nillable="true" type="xsd:string"/>
+          <xsd:element minOccurs="0" name="state" nillable="true" type="tns:DeviceState"/>
+          <xsd:element minOccurs="0" name="stateInfo" nillable="true" type="tns:DeviceStateInfo"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="House">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="devices" nillable="true" type="tns:ArrayOfDevice"/>
+          <xsd:element minOccurs="0" name="id" type="xsd:int"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="UpdateStatus">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="currentStep" type="xsd:int"/>
+          <xsd:element minOccurs="0" name="finished" type="xsd:boolean"/>
+          <xsd:element minOccurs="0" name="info" nillable="true" type="xsd:string"/>
+          <xsd:element minOccurs="0" name="steps" type="xsd:int"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="DaylightSavingConfiguration">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="dayOfWeek" nillable="true" type="tns:DayOfWeek"/>
+          <xsd:element minOccurs="0" name="hourOfDay" type="xsd:int"/>
+          <xsd:element minOccurs="0" name="month" type="xsd:int"/>
+          <xsd:element minOccurs="0" name="name" nillable="true" type="xsd:string"/>
+          <xsd:element minOccurs="0" name="offsetToUTC" type="xsd:int"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="HeatingThermostatDeviceState">
+        <xsd:complexContent>
+          <xsd:extension base="tns:DeviceState">
+            <xsd:sequence>
+              <xsd:element minOccurs="0" name="batteryLow" type="xsd:boolean"/>
+              <xsd:element minOccurs="0" name="setPointTemperature" type="xsd:double"/>
+              <xsd:element minOccurs="0" name="temperatureOffset" type="xsd:double"/>
+              <xsd:element minOccurs="0" name="transmitError" type="xsd:boolean"/>
+            </xsd:sequence>
+          </xsd:extension>
+        </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:complexType name="RemoteCredentials">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="remoteAccessEnabled" type="xsd:boolean"/>
+          <xsd:element minOccurs="0" name="userName" nillable="true" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="CubeInfo">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="firmwareVersion" type="xsd:int"/>
+          <xsd:element minOccurs="0" name="inBootLoader" type="xsd:boolean"/>
+          <xsd:element minOccurs="0" name="ipAddress" nillable="true" type="xsd:string"/>
+          <xsd:element minOccurs="0" name="serialNumber" nillable="true" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="Room">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="actualTemperature" type="xsd:double"/>
+          <xsd:element minOccurs="0" name="boostDuration" type="xsd:int"/>
+          <xsd:element minOccurs="0" name="boostValveAngle" type="xsd:int"/>
+          <xsd:element minOccurs="0" name="comfortTemperature" type="xsd:double"/>
+          <xsd:element minOccurs="0" name="controlMode" nillable="true" type="tns:RoomControlMode"/>
+          <xsd:element minOccurs="0" name="currentAutoTemperature" type="xsd:double"/>
+          <xsd:element minOccurs="0" name="decalcificationDay" nillable="true" type="tns:DayOfWeek"/>
+          <xsd:element minOccurs="0" name="decalcificationHour" type="xsd:int"/>
+          <xsd:element minOccurs="0" name="devices" nillable="true" type="tns:ArrayOfDevice"/>
+          <xsd:element minOccurs="0" name="ecoTemperature" type="xsd:double"/>
+          <xsd:element minOccurs="0" name="id" type="xsd:int"/>
+          <xsd:element minOccurs="0" name="maximumNoOfHeatingThermostats" type="xsd:int"/>
+          <xsd:element minOccurs="0" name="maximumNoOfShutterContacts" type="xsd:int"/>
+          <xsd:element minOccurs="0" name="maximumNoOfWallMountedThermostats" type="xsd:int"/>
+          <xsd:element minOccurs="0" name="maximumTemperature" type="xsd:double"/>
+          <xsd:element minOccurs="0" name="name" nillable="true" type="xsd:string"/>
+          <xsd:element minOccurs="0" name="order" type="xsd:int"/>
+          <xsd:element minOccurs="0" name="setPointTemperature" type="xsd:double"/>
+          <xsd:element minOccurs="0" name="setPointTemperatureValid" type="xsd:boolean"/>
+          <xsd:element minOccurs="0" name="stateChanged" type="xsd:boolean"/>
+          <xsd:element minOccurs="0" name="stateDirty" type="xsd:boolean"/>
+          <xsd:element minOccurs="0" name="temperatureControllable" type="xsd:boolean"/>
+          <xsd:element minOccurs="0" name="temperatureMode" nillable="true" type="tns:RoomTemperatureMode"/>
+          <xsd:element minOccurs="0" name="temporaryModeStopDate" type="xsd:dateTime"/>
+          <xsd:element minOccurs="0" name="weekTemperatureProfile" nillable="true" type="tns:WeekTemperatureProfile"/>
+          <xsd:element minOccurs="0" name="windowOpenDuration" type="xsd:int"/>
+          <xsd:element minOccurs="0" name="windowOpenTemperature" type="xsd:double"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="MaxCubeLastPing">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="date" type="xsd:dateTime"/>
+          <xsd:element minOccurs="0" name="outdated" type="xsd:boolean"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:simpleType name="DeviceStateInfo">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="Valid"/>
+          <xsd:enumeration value="NotInitialized"/>
+          <xsd:enumeration value="OutOfDate"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="RoomControlMode">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="Auto"/>
+          <xsd:enumeration value="Permanently"/>
+          <xsd:enumeration value="Temporary"/>
+          <xsd:enumeration value="NotAvailable"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+    </xsd:schema>
+    <xsd:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://exception.cl.max.eq3.de" xmlns:tns="http://exception.cl.max.eq3.de" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <xsd:complexType name="ClientException">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="errorCode" nillable="true" type="xsd:string"/>
+          <xsd:element minOccurs="0" name="exceptionMessage" nillable="true" type="xsd:string"/>
+          <xsd:element minOccurs="0" name="exceptionType" nillable="true" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+    </xsd:schema>
   </wsdl:types>
   <wsdl:message name="getMaxCubeState">
     <wsdl:part element="ns1:getMaxCubeState" name="parameters">
     </wsdl:part>
   </wsdl:message>
-  <wsdl:message name="authenticateAgainstIdentityProvider">
-    <wsdl:part element="ns1:authenticateAgainstIdentityProvider" name="parameters">
+  <wsdl:message name="setRoomPermanentMode">
+    <wsdl:part element="ns1:setRoomPermanentMode" name="parameters">
     </wsdl:part>
   </wsdl:message>
   <wsdl:message name="getRemoteUserDataResponse">
     <wsdl:part element="ns1:getRemoteUserDataResponse" name="parameters">
     </wsdl:part>
   </wsdl:message>
+  <wsdl:message name="authenticateAgainstIdentityProviderResponse">
+    <wsdl:part element="ns1:authenticateAgainstIdentityProviderResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
   <wsdl:message name="setClientCommands">
     <wsdl:part element="ns1:setClientCommands" name="parameters">
     </wsdl:part>
   </wsdl:message>
-  <wsdl:message name="authenticateAgainstIdentityProviderResponse">
-    <wsdl:part element="ns1:authenticateAgainstIdentityProviderResponse" name="parameters">
+  <wsdl:message name="setDeviceDisplaySetPointActual">
+    <wsdl:part element="ns1:setDeviceDisplaySetPointActual" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="setRoomConfigValveOffsetResponse">
+    <wsdl:part element="ns1:setRoomConfigValveOffsetResponse" name="parameters">
     </wsdl:part>
   </wsdl:message>
   <wsdl:message name="setClientCommandsResponse">
     <wsdl:part element="ns1:setClientCommandsResponse" name="parameters">
     </wsdl:part>
   </wsdl:message>
-  <wsdl:message name="loginResponse">
-    <wsdl:part element="ns1:loginResponse" name="parameters">
+  <wsdl:message name="setRoomTemporaryModeResponse">
+    <wsdl:part element="ns1:setRoomTemporaryModeResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="activateProduct">
+    <wsdl:part element="ns1:activateProduct" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="setRoomAutoMode">
+    <wsdl:part element="ns1:setRoomAutoMode" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="activateProductResponse">
+    <wsdl:part element="ns1:activateProductResponse" name="parameters">
     </wsdl:part>
   </wsdl:message>
   <wsdl:message name="login">
     <wsdl:part element="ns1:login" name="parameters">
     </wsdl:part>
   </wsdl:message>
+  <wsdl:message name="setRoomAutoModeWithTemperature">
+    <wsdl:part element="ns1:setRoomAutoModeWithTemperature" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="setRoomConfigDecalcification">
+    <wsdl:part element="ns1:setRoomConfigDecalcification" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="setRoomWindowOpenTemperatureResponse">
+    <wsdl:part element="ns1:setRoomWindowOpenTemperatureResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="setRoomConfigBoostResponse">
+    <wsdl:part element="ns1:setRoomConfigBoostResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
   <wsdl:message name="logoutResponse">
     <wsdl:part element="ns1:logoutResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="setRoomPermanentModeResponse">
+    <wsdl:part element="ns1:setRoomPermanentModeResponse" name="parameters">
     </wsdl:part>
   </wsdl:message>
   <wsdl:message name="ClientException">
     <wsdl:part element="ns1:ClientException" name="ClientException">
     </wsdl:part>
   </wsdl:message>
+  <wsdl:message name="setRoomTemperatureOffset">
+    <wsdl:part element="ns1:setRoomTemperatureOffset" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
   <wsdl:message name="getMaxCubeStateResponse">
     <wsdl:part element="ns1:getMaxCubeStateResponse" name="parameters">
     </wsdl:part>
   </wsdl:message>
-  <wsdl:message name="logout">
-    <wsdl:part element="ns1:logout" name="parameters">
+  <wsdl:message name="setRoomComfortTemperatureResponse">
+    <wsdl:part element="ns1:setRoomComfortTemperatureResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="setRoomWindowOpenTemperature">
+    <wsdl:part element="ns1:setRoomWindowOpenTemperature" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="setRoomMaximumTemperatureResponse">
+    <wsdl:part element="ns1:setRoomMaximumTemperatureResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="setRoomEcoTemperature">
+    <wsdl:part element="ns1:setRoomEcoTemperature" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="setDeviceDisplaySetPointActualResponse">
+    <wsdl:part element="ns1:setDeviceDisplaySetPointActualResponse" name="parameters">
     </wsdl:part>
   </wsdl:message>
   <wsdl:message name="getRemoteUserData">
     <wsdl:part element="ns1:getRemoteUserData" name="parameters">
     </wsdl:part>
   </wsdl:message>
+  <wsdl:message name="setRoomAutoModeWithTemperatureResponse">
+    <wsdl:part element="ns1:setRoomAutoModeWithTemperatureResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="setRoomMaximumTemperature">
+    <wsdl:part element="ns1:setRoomMaximumTemperature" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="setRoomConfigValveOffset">
+    <wsdl:part element="ns1:setRoomConfigValveOffset" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="authenticateAgainstIdentityProvider">
+    <wsdl:part element="ns1:authenticateAgainstIdentityProvider" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="setRoomConfigDecalcificationResponse">
+    <wsdl:part element="ns1:setRoomConfigDecalcificationResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getExampleClientCommandResponse">
+    <wsdl:part element="ns1:getExampleClientCommandResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="setRoomTemperatureOffsetResponse">
+    <wsdl:part element="ns1:setRoomTemperatureOffsetResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="setRoomTemporaryMode">
+    <wsdl:part element="ns1:setRoomTemporaryMode" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="checkProductActivationResponse">
+    <wsdl:part element="ns1:checkProductActivationResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="loginResponse">
+    <wsdl:part element="ns1:loginResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getExampleClientCommand">
+    <wsdl:part element="ns1:getExampleClientCommand" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="setRoomEcoTemperatureResponse">
+    <wsdl:part element="ns1:setRoomEcoTemperatureResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="setRoomConfigBoost">
+    <wsdl:part element="ns1:setRoomConfigBoost" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="checkProductActivation">
+    <wsdl:part element="ns1:checkProductActivation" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="logout">
+    <wsdl:part element="ns1:logout" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="setRoomAutoModeResponse">
+    <wsdl:part element="ns1:setRoomAutoModeResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="setRoomComfortTemperature">
+    <wsdl:part element="ns1:setRoomComfortTemperature" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
   <wsdl:portType name="IMaxRemote">
+    <wsdl:operation name="setRoomConfigDecalcification">
+      <wsdl:input message="ns1:setRoomConfigDecalcification" name="setRoomConfigDecalcification">
+      </wsdl:input>
+      <wsdl:output message="ns1:setRoomConfigDecalcificationResponse" name="setRoomConfigDecalcificationResponse">
+      </wsdl:output>
+      <wsdl:fault message="ns1:ClientException" name="ClientException">
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="setRoomAutoModeWithTemperature">
+      <wsdl:input message="ns1:setRoomAutoModeWithTemperature" name="setRoomAutoModeWithTemperature">
+      </wsdl:input>
+      <wsdl:output message="ns1:setRoomAutoModeWithTemperatureResponse" name="setRoomAutoModeWithTemperatureResponse">
+      </wsdl:output>
+      <wsdl:fault message="ns1:ClientException" name="ClientException">
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="setRoomConfigBoost">
+      <wsdl:input message="ns1:setRoomConfigBoost" name="setRoomConfigBoost">
+      </wsdl:input>
+      <wsdl:output message="ns1:setRoomConfigBoostResponse" name="setRoomConfigBoostResponse">
+      </wsdl:output>
+      <wsdl:fault message="ns1:ClientException" name="ClientException">
+      </wsdl:fault>
+    </wsdl:operation>
     <wsdl:operation name="getMaxCubeState">
       <wsdl:input message="ns1:getMaxCubeState" name="getMaxCubeState">
-    </wsdl:input>
+      </wsdl:input>
       <wsdl:output message="ns1:getMaxCubeStateResponse" name="getMaxCubeStateResponse">
-    </wsdl:output>
+      </wsdl:output>
       <wsdl:fault message="ns1:ClientException" name="ClientException">
-    </wsdl:fault>
+      </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="logout">
       <wsdl:input message="ns1:logout" name="logout">
-    </wsdl:input>
+      </wsdl:input>
       <wsdl:output message="ns1:logoutResponse" name="logoutResponse">
-    </wsdl:output>
+      </wsdl:output>
       <wsdl:fault message="ns1:ClientException" name="ClientException">
-    </wsdl:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="setRoomEcoTemperature">
+      <wsdl:input message="ns1:setRoomEcoTemperature" name="setRoomEcoTemperature">
+      </wsdl:input>
+      <wsdl:output message="ns1:setRoomEcoTemperatureResponse" name="setRoomEcoTemperatureResponse">
+      </wsdl:output>
+      <wsdl:fault message="ns1:ClientException" name="ClientException">
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="setRoomMaximumTemperature">
+      <wsdl:input message="ns1:setRoomMaximumTemperature" name="setRoomMaximumTemperature">
+      </wsdl:input>
+      <wsdl:output message="ns1:setRoomMaximumTemperatureResponse" name="setRoomMaximumTemperatureResponse">
+      </wsdl:output>
+      <wsdl:fault message="ns1:ClientException" name="ClientException">
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="activateProduct">
+      <wsdl:input message="ns1:activateProduct" name="activateProduct">
+      </wsdl:input>
+      <wsdl:output message="ns1:activateProductResponse" name="activateProductResponse">
+      </wsdl:output>
+      <wsdl:fault message="ns1:ClientException" name="ClientException">
+      </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="setClientCommands">
       <wsdl:input message="ns1:setClientCommands" name="setClientCommands">
-    </wsdl:input>
+      </wsdl:input>
       <wsdl:output message="ns1:setClientCommandsResponse" name="setClientCommandsResponse">
-    </wsdl:output>
+      </wsdl:output>
       <wsdl:fault message="ns1:ClientException" name="ClientException">
-    </wsdl:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="setDeviceDisplaySetPointActual">
+      <wsdl:input message="ns1:setDeviceDisplaySetPointActual" name="setDeviceDisplaySetPointActual">
+      </wsdl:input>
+      <wsdl:output message="ns1:setDeviceDisplaySetPointActualResponse" name="setDeviceDisplaySetPointActualResponse">
+      </wsdl:output>
+      <wsdl:fault message="ns1:ClientException" name="ClientException">
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="setRoomTemporaryMode">
+      <wsdl:input message="ns1:setRoomTemporaryMode" name="setRoomTemporaryMode">
+      </wsdl:input>
+      <wsdl:output message="ns1:setRoomTemporaryModeResponse" name="setRoomTemporaryModeResponse">
+      </wsdl:output>
+      <wsdl:fault message="ns1:ClientException" name="ClientException">
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="checkProductActivation">
+      <wsdl:input message="ns1:checkProductActivation" name="checkProductActivation">
+      </wsdl:input>
+      <wsdl:output message="ns1:checkProductActivationResponse" name="checkProductActivationResponse">
+      </wsdl:output>
+      <wsdl:fault message="ns1:ClientException" name="ClientException">
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="setRoomWindowOpenTemperature">
+      <wsdl:input message="ns1:setRoomWindowOpenTemperature" name="setRoomWindowOpenTemperature">
+      </wsdl:input>
+      <wsdl:output message="ns1:setRoomWindowOpenTemperatureResponse" name="setRoomWindowOpenTemperatureResponse">
+      </wsdl:output>
+      <wsdl:fault message="ns1:ClientException" name="ClientException">
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="setRoomTemperatureOffset">
+      <wsdl:input message="ns1:setRoomTemperatureOffset" name="setRoomTemperatureOffset">
+      </wsdl:input>
+      <wsdl:output message="ns1:setRoomTemperatureOffsetResponse" name="setRoomTemperatureOffsetResponse">
+      </wsdl:output>
+      <wsdl:fault message="ns1:ClientException" name="ClientException">
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="setRoomComfortTemperature">
+      <wsdl:input message="ns1:setRoomComfortTemperature" name="setRoomComfortTemperature">
+      </wsdl:input>
+      <wsdl:output message="ns1:setRoomComfortTemperatureResponse" name="setRoomComfortTemperatureResponse">
+      </wsdl:output>
+      <wsdl:fault message="ns1:ClientException" name="ClientException">
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="setRoomAutoMode">
+      <wsdl:input message="ns1:setRoomAutoMode" name="setRoomAutoMode">
+      </wsdl:input>
+      <wsdl:output message="ns1:setRoomAutoModeResponse" name="setRoomAutoModeResponse">
+      </wsdl:output>
+      <wsdl:fault message="ns1:ClientException" name="ClientException">
+      </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="login">
       <wsdl:input message="ns1:login" name="login">
-    </wsdl:input>
+      </wsdl:input>
       <wsdl:output message="ns1:loginResponse" name="loginResponse">
-    </wsdl:output>
+      </wsdl:output>
       <wsdl:fault message="ns1:ClientException" name="ClientException">
-    </wsdl:fault>
+      </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="authenticateAgainstIdentityProvider">
       <wsdl:input message="ns1:authenticateAgainstIdentityProvider" name="authenticateAgainstIdentityProvider">
-    </wsdl:input>
+      </wsdl:input>
       <wsdl:output message="ns1:authenticateAgainstIdentityProviderResponse" name="authenticateAgainstIdentityProviderResponse">
-    </wsdl:output>
+      </wsdl:output>
       <wsdl:fault message="ns1:ClientException" name="ClientException">
-    </wsdl:fault>
+      </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="getRemoteUserData">
       <wsdl:input message="ns1:getRemoteUserData" name="getRemoteUserData">
-    </wsdl:input>
+      </wsdl:input>
       <wsdl:output message="ns1:getRemoteUserDataResponse" name="getRemoteUserDataResponse">
-    </wsdl:output>
+      </wsdl:output>
       <wsdl:fault message="ns1:ClientException" name="ClientException">
-    </wsdl:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="setRoomPermanentMode">
+      <wsdl:input message="ns1:setRoomPermanentMode" name="setRoomPermanentMode">
+      </wsdl:input>
+      <wsdl:output message="ns1:setRoomPermanentModeResponse" name="setRoomPermanentModeResponse">
+      </wsdl:output>
+      <wsdl:fault message="ns1:ClientException" name="ClientException">
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="setRoomConfigValveOffset">
+      <wsdl:input message="ns1:setRoomConfigValveOffset" name="setRoomConfigValveOffset">
+      </wsdl:input>
+      <wsdl:output message="ns1:setRoomConfigValveOffsetResponse" name="setRoomConfigValveOffsetResponse">
+      </wsdl:output>
+      <wsdl:fault message="ns1:ClientException" name="ClientException">
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getExampleClientCommand">
+      <wsdl:input message="ns1:getExampleClientCommand" name="getExampleClientCommand">
+      </wsdl:input>
+      <wsdl:output message="ns1:getExampleClientCommandResponse" name="getExampleClientCommandResponse">
+      </wsdl:output>
+      <wsdl:fault message="ns1:ClientException" name="ClientException">
+      </wsdl:fault>
     </wsdl:operation>
   </wsdl:portType>
 </wsdl:definitions>
