@@ -580,7 +580,7 @@
           <xsd:element maxOccurs="unbounded" minOccurs="0" name="Device" nillable="true" type="tns:Device"/>
         </xsd:sequence>
       </xsd:complexType>
-      <xsd:complexType abstract="true" name="DeviceState">
+      <xsd:complexType name="DeviceState">
         <xsd:sequence/>
       </xsd:complexType>
       <xsd:simpleType name="RadioState">
