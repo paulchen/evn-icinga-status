@@ -108,7 +108,7 @@
                     <programs>
                         <program>
                             <mainClass>at.rueckgr.smarthome.evn.icinga.Main</mainClass>
-                            <name>evn-icinga-status</name>
+                            <id>evn-icinga-status</id>
                         </program>
                     </programs>
                 </configuration>
