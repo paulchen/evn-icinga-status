@@ -1,5 +1,10 @@
 package at.rueckgr.smarthome.evn.icinga;
 
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+
+@Getter
+@RequiredArgsConstructor
 public enum IcingaStatus {
     OK(0),
     WARNING(1),
@@ -7,12 +12,4 @@ public enum IcingaStatus {
     UNKNOWN(3);
 
     private final int statusCode;
-
-    IcingaStatus(final int statusCode) {
-        this.statusCode = statusCode;
-    }
-
-    public int getStatusCode() {
-        return statusCode;
-    }
 }

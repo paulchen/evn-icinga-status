@@ -1,8 +1,15 @@
 package at.rueckgr.smarthome.evn.remote;
 
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+
 import java.io.Serializable;
 import java.util.Objects;
 
+@Getter
+@Setter
+@EqualsAndHashCode(of = "serialNumber")
 public class Device implements Serializable {
     private String serialNumber;
     private String name;
@@ -30,18 +37,5 @@ public class Device implements Serializable {
 
     public void setState(DeviceState state) {
         this.state = state;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Device device = (Device) o;
-        return Objects.equals(serialNumber, device.serialNumber);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(serialNumber);
     }
 }

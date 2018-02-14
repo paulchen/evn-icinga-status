@@ -1,5 +1,10 @@
 package at.rueckgr.smarthome.evn.remote;
 
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+
+@Getter
+@RequiredArgsConstructor
 public enum DeviceState {
     OK("ok", true),
     BATTERY_LOW("battery", false),
@@ -7,17 +12,4 @@ public enum DeviceState {
 
     private final String description;
     private final boolean ok;
-
-    DeviceState(final String description, final boolean ok) {
-        this.description = description;
-        this.ok = ok;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public boolean isOk() {
-        return ok;
-    }
 }
