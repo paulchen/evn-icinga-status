@@ -2,6 +2,7 @@ package at.rueckgr.smarthome.evn.icinga;
 
 import at.rueckgr.smarthome.evn.remote.Room;
 import at.rueckgr.smarthome.evn.remote.SmartHomeService;
+import at.rueckgr.smarthome.evn.remote.SmartHomeServiceImpl;
 import at.rueckgr.smarthome.evn.remote.TemperatureSettings;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
@@ -24,7 +25,7 @@ public class CheckStatusService {
 
     public CheckStatusService(final StatusProperties properties) {
         this.properties = properties;
-        this.service = new SmartHomeService(properties.getUsername(), properties.getPassword());
+        this.service = new SmartHomeServiceImpl(properties.getUsername(), properties.getPassword());
 
         final String sessionToken = properties.getSessionToken();
         if (!StringUtils.isBlank(sessionToken)) {
