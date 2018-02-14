@@ -6,6 +6,7 @@ import de.eq3.max.cl.dto.HeatingThermostatDeviceState;
 import de.eq3.max.cl.dto.MaxCubeState;
 import de.eq3.max.cl.dto.PushButtonDeviceState;
 import de.eq3.max.cl.dto.ShutterContactDeviceState;
+import de.eq3.max.cl.dto.command.SetRoomAutoModeWithTemperature;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Validate;
 import org.apache.cxf.endpoint.Client;
@@ -93,6 +94,7 @@ public class SmartHomeService implements Serializable {
             final Room room = new Room();
             room.setId(serviceRoom.getId());
             room.setName(serviceRoom.getName().getValue());
+            room.setTemperatureSettings(getTemperatureSettings(serviceRoom));
 
             List<Device> devices = new ArrayList<>();
             for (de.eq3.max.cl.dto.Device serviceDevice : serviceRoom.getDevices().getValue().getDevice()) {
@@ -110,6 +112,30 @@ public class SmartHomeService implements Serializable {
         }
         smartHomeState.setRooms(rooms);
         return smartHomeState;
+    }
+
+    private TemperatureSettings getTemperatureSettings(de.eq3.max.cl.dto.Room room) {
+        final TemperatureSettings temperatureSettings = new TemperatureSettings();
+
+        temperatureSettings.setAutoTemperature(room.getCurrentAutoTemperature());
+        temperatureSettings.setComfortTemperature(room.getComfortTemperature());
+        temperatureSettings.setEcoTemperature(room.getEcoTemperature());
+        temperatureSettings.setTemperatureMode(getTemperatureMode(room));
+
+        return temperatureSettings;
+    }
+
+    private TemperatureSettings.TemperatureMode getTemperatureMode(de.eq3.max.cl.dto.Room room) {
+        switch (room.getTemperatureMode().getValue()) {
+            case NORMAL:
+                return TemperatureSettings.TemperatureMode.NORMAL;
+            case COMFORT:
+                return TemperatureSettings.TemperatureMode.COMFORT;
+            case ECO:
+                return TemperatureSettings.TemperatureMode.ECO;
+            default:
+                throw new SmartHomeException("Unknown temperature mode: " + room.getTemperatureMode().getValue());
+        }
     }
 
     private DeviceState determineState(final de.eq3.max.cl.dto.Device device) {
@@ -151,5 +177,33 @@ public class SmartHomeService implements Serializable {
 
     public String getSessionToken() {
         return state.getSessionToken();
+    }
+
+    public void setTemperatureSettings(final Room room, final TemperatureSettings temperatureSettings) {
+        try {
+            final SetRoomAutoModeWithTemperature setRoomAutoModeWithTemperature = new SetRoomAutoModeWithTemperature();
+            setRoomAutoModeWithTemperature.setRoomId(room.getId());
+            setRoomAutoModeWithTemperature.setTemperature(getTargetTemperature(temperatureSettings));
+            final boolean b = remoteService.setRoomAutoModeWithTemperature(setRoomAutoModeWithTemperature);
+            if(!b) {
+                throw new SmartHomeException("Unable to set new target temperature");
+            }
+        }
+        catch (ClientException e) {
+            throw new SmartHomeException(e);
+        }
+    }
+
+    private double getTargetTemperature(final TemperatureSettings temperatureSettings) {
+        switch(temperatureSettings.getTemperatureMode()) {
+            case NORMAL:
+                return temperatureSettings.getAutoTemperature();
+            case ECO:
+                return temperatureSettings.getEcoTemperature();
+            case COMFORT:
+                return temperatureSettings.getComfortTemperature();
+            default:
+                throw new SmartHomeException("Unknown temperature mode: " + temperatureSettings.getTemperatureMode());
+        }
     }
 }
