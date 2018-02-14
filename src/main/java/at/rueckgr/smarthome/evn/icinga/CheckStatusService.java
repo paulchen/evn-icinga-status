@@ -1,5 +1,6 @@
 package at.rueckgr.smarthome.evn.icinga;
 
+import at.rueckgr.smarthome.evn.remote.RetryFacade;
 import at.rueckgr.smarthome.evn.remote.Room;
 import at.rueckgr.smarthome.evn.remote.SmartHomeService;
 import at.rueckgr.smarthome.evn.remote.SmartHomeServiceImpl;
@@ -25,11 +26,12 @@ public class CheckStatusService {
 
     public CheckStatusService(final StatusProperties properties) {
         this.properties = properties;
-        this.service = new SmartHomeServiceImpl(properties.getUsername(), properties.getPassword());
+        final SmartHomeServiceImpl smartHomeService = new SmartHomeServiceImpl(properties.getUsername(), properties.getPassword());
+        this.service = new RetryFacade(smartHomeService);
 
         final String sessionToken = properties.getSessionToken();
         if (!StringUtils.isBlank(sessionToken)) {
-            service.setSessionToken(sessionToken);
+            this.service.setSessionToken(sessionToken);
         }
     }
 

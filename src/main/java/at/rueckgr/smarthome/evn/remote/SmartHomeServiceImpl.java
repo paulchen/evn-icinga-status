@@ -66,35 +66,15 @@ public class SmartHomeServiceImpl implements SmartHomeService {
 
     @Override
     public SmartHomeState getState() {
-        boolean alreadyTriedToLogin = false;
-        if(state.getSessionToken() == null) {
-            login();
-            alreadyTriedToLogin = true;
-        }
+        logger.info("Trying to obtain state");
 
-        MaxCubeState maxCubeState;
         try {
-            logger.info("Trying to obtain state");
-
-            maxCubeState = remoteService.getMaxCubeState();
+            final MaxCubeState maxCubeState = remoteService.getMaxCubeState();
+            return transformState(maxCubeState);
         }
         catch (ClientException e) {
-            if(alreadyTriedToLogin) {
-                throw new SmartHomeException(e);
-            }
-
-            login();
-            try {
-                logger.info("Trying to obtain state");
-
-                maxCubeState = remoteService.getMaxCubeState();
-            }
-            catch (ClientException e1) {
-                throw new SmartHomeException(e1);
-            }
+            throw new SmartHomeException(e);
         }
-
-        return transformState(maxCubeState);
     }
 
     private SmartHomeState transformState(final MaxCubeState maxCubeState) {
