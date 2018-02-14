@@ -2,6 +2,8 @@ package at.rueckgr.smarthome.evn.icinga;
 
 import at.rueckgr.smarthome.evn.remote.*;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -13,6 +15,8 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Main {
+
+    private final static Logger logger = LogManager.getLogger(Main.class);
 
     private static final int WAIT_SECONDS = 120;
     private static final float TEMPERATURE_DIFFERENCE = .5f;
@@ -37,6 +41,8 @@ public class Main {
             problems = findProblems(service);
         }
 
+        logger.info("Problems: {}", problems.toString());
+
         properties.setSessionToken(service.getSessionToken());
         properties.save();
 
@@ -60,6 +66,8 @@ public class Main {
     }
 
     private static void changeTemperatureTwice(final SmartHomeService service, final Room room) {
+        logger.info("Executing temperature change cycle for room {}", room.getName());
+
         final TemperatureSettings oldSettings = room.getTemperatureSettings();
 
         final TemperatureSettings temporaryTemperatureSettings = new TemperatureSettings(oldSettings);
@@ -76,6 +84,7 @@ public class Main {
 
     private static void sleep(int seconds) {
         try {
+            logger.info("Sleeping {} seconds", seconds);
             Thread.sleep(TimeUnit.SECONDS.toMillis(seconds));
         }
         catch (InterruptedException e) {

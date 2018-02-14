@@ -11,6 +11,8 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Validate;
 import org.apache.cxf.endpoint.Client;
 import org.apache.cxf.frontend.ClientProxy;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.schema.beans.MaxRemote;
 
 import java.io.Serializable;
@@ -18,6 +20,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SmartHomeService implements Serializable {
+    private static final Logger logger = LogManager.getLogger(SmartHomeService.class);
+
     private final InternalState state;
     private final IMaxRemote remoteService;
 
@@ -34,6 +38,8 @@ public class SmartHomeService implements Serializable {
     }
 
     public void login() {
+        logger.info("Logging in with username {}", state.getUsername());
+
         String sessionToken;
         try {
             sessionToken = remoteService.login(state.getUsername(), state.getPassword());
@@ -67,6 +73,8 @@ public class SmartHomeService implements Serializable {
 
         MaxCubeState maxCubeState;
         try {
+            logger.info("Trying to obtain state");
+
             maxCubeState = remoteService.getMaxCubeState();
         }
         catch (ClientException e) {
@@ -76,6 +84,8 @@ public class SmartHomeService implements Serializable {
 
             login();
             try {
+                logger.info("Trying to obtain state");
+
                 maxCubeState = remoteService.getMaxCubeState();
             }
             catch (ClientException e1) {
@@ -183,7 +193,11 @@ public class SmartHomeService implements Serializable {
         try {
             final SetRoomAutoModeWithTemperature setRoomAutoModeWithTemperature = new SetRoomAutoModeWithTemperature();
             setRoomAutoModeWithTemperature.setRoomId(room.getId());
-            setRoomAutoModeWithTemperature.setTemperature(getTargetTemperature(temperatureSettings));
+            final double targetTemperature = getTargetTemperature(temperatureSettings);
+            setRoomAutoModeWithTemperature.setTemperature(targetTemperature);
+
+            logger.info("Setting temperature for room {} to {}", room.getName(), targetTemperature);
+
             final boolean b = remoteService.setRoomAutoModeWithTemperature(setRoomAutoModeWithTemperature);
             if(!b) {
                 throw new SmartHomeException("Unable to set new target temperature");
