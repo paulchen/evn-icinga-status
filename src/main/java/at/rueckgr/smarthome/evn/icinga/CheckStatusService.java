@@ -37,12 +37,14 @@ public class CheckStatusService {
 
     public IcingaResult checkStatus() {
         List<Problem> problems = findProblems();
+        logger.info("Problems: {}", problems.toString());
+
         if(!problems.isEmpty()) {
             problems.stream().map(Problem::getRoom).distinct().forEach(this::changeTemperatureTwice);
             problems = findProblems();
-        }
 
-        logger.info("Problems: {}", problems.toString());
+            logger.info("Problems: {}", problems.toString());
+        }
 
         properties.setSessionToken(service.getSessionToken());
         properties.save();
