@@ -7,6 +7,8 @@ import at.rueckgr.smarthome.evn.remote.SmartHomeService;
 import at.rueckgr.smarthome.evn.remote.SmartHomeServiceImpl;
 import at.rueckgr.smarthome.evn.remote.TemperatureSettings;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.tuple.ImmutablePair;
+import org.apache.commons.lang3.tuple.Pair;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -37,10 +39,11 @@ public class CheckStatusService {
         }
     }
 
-    public IcingaResult checkStatus() {
+    public Pair<IcingaResult, Boolean> checkStatus() {
         List<Problem> problems = findProblems();
         logger.info("Problems: {}", problems.toString());
 
+        boolean temperatureChanged = false;
         if(!problems.isEmpty()) {
             // There may be other problems than radio errors.
             // Only in case of radio errors we try to fix the problem by changing the temperature.
@@ -55,6 +58,7 @@ public class CheckStatusService {
                     .forEach(this::changeTemperatureTwice);
 
             if(roomsFound.get()) {
+                temperatureChanged = true;
                 problems = findProblems();
 
                 logger.info("Problems: {}", problems.toString());
@@ -74,7 +78,7 @@ public class CheckStatusService {
             icingaResult.setText("Problem(s): " + problems.toString());
         }
 
-        return icingaResult;
+        return new ImmutablePair<>(icingaResult, temperatureChanged);
     }
 
     private void changeTemperatureTwice(final Room room) {

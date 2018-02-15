@@ -1,6 +1,7 @@
 package at.rueckgr.smarthome.evn.icinga;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.tuple.Pair;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -15,7 +16,8 @@ public class Main {
 
         final StatusProperties properties = new StatusProperties(args[0]);
         final CheckStatusService service = new CheckStatusService(properties);
-        final IcingaResult icingaResult = service.checkStatus();
+        final Pair<IcingaResult, Boolean> result = service.checkStatus();
+        final IcingaResult icingaResult = result.getLeft();
 
         final String statusOutputFile = properties.getStatusOutputFile();
         try (OutputStream outputStream = createOutputStream(statusOutputFile)) {
@@ -23,6 +25,10 @@ public class Main {
         }
         catch (IOException e) {
             throw new RuntimeException(e);
+        }
+
+        if (result.getRight()) {
+            System.exit(1);
         }
     }
 
