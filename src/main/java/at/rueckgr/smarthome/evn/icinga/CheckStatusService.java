@@ -1,5 +1,6 @@
 package at.rueckgr.smarthome.evn.icinga;
 
+import at.rueckgr.smarthome.evn.remote.DeviceState;
 import at.rueckgr.smarthome.evn.remote.RetryFacade;
 import at.rueckgr.smarthome.evn.remote.Room;
 import at.rueckgr.smarthome.evn.remote.SmartHomeService;
@@ -11,6 +12,7 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -40,10 +42,23 @@ public class CheckStatusService {
         logger.info("Problems: {}", problems.toString());
 
         if(!problems.isEmpty()) {
-            problems.stream().map(Problem::getRoom).distinct().forEach(this::changeTemperatureTwice);
-            problems = findProblems();
+            // There may be other problems than radio errors.
+            // Only in case of radio errors we try to fix the problem by changing the temperature.
+            // But if we change nothing, we don't need to call findProblems() again.
+            // We use this AtomicBoolean to know if there is at least one radio error.
+            final AtomicBoolean roomsFound = new AtomicBoolean(false);
+            problems.stream()
+                    .filter(p -> p.getDevice().getState() == DeviceState.RADIO_ERROR)
+                    .map(Problem::getRoom)
+                    .distinct()
+                    .peek(r -> roomsFound.set(true))
+                    .forEach(this::changeTemperatureTwice);
 
-            logger.info("Problems: {}", problems.toString());
+            if(roomsFound.get()) {
+                problems = findProblems();
+
+                logger.info("Problems: {}", problems.toString());
+            }
         }
 
         properties.setSessionToken(service.getSessionToken());
