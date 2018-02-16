@@ -132,6 +132,7 @@
                             <id>evn-icinga-status</id>
                         </program>
                     </programs>
+                    <extraJvmArguments>-XX:-UsePerfData</extraJvmArguments>
                 </configuration>
             </plugin>
         </plugins>
