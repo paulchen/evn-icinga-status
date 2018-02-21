@@ -175,12 +175,13 @@ public class SmartHomeServiceImpl implements SmartHomeService {
     @Override
     public void setTemperatureSettings(final Room room, final TemperatureSettings temperatureSettings) {
         try {
+            final double oldTemperature = room.getTemperatureSettings().getAutoTemperature();
             final SetRoomAutoModeWithTemperature setRoomAutoModeWithTemperature = new SetRoomAutoModeWithTemperature();
             setRoomAutoModeWithTemperature.setRoomId(room.getId());
             final double targetTemperature = getTargetTemperature(temperatureSettings);
             setRoomAutoModeWithTemperature.setTemperature(targetTemperature);
 
-            logger.info("Setting temperature for room {} to {}", room.getName(), targetTemperature);
+            logger.info("Setting temperature for room {} from {} to {}", room.getName(), oldTemperature, targetTemperature);
 
             final boolean b = remoteService.setRoomAutoModeWithTemperature(setRoomAutoModeWithTemperature);
             if(!b) {
