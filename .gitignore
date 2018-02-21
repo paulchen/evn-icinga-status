@@ -3,3 +3,4 @@ target
 .idea
 evn.properties
 evn.status
+*.log*
