@@ -45,11 +45,11 @@ public class RetryFacade implements SmartHomeService {
     }
 
     @Override
-    public void setTemperatureSettings(final Room room, final TemperatureSettings temperatureSettings) {
+    public void setTemperatureSettings(final Room room, final TemperatureSettings oldSettings, final TemperatureSettings newSettings) {
         boolean alreadyTriedToLogin = checkLogin();
 
         try {
-            delegate.setTemperatureSettings(room, temperatureSettings);
+            delegate.setTemperatureSettings(room, oldSettings, newSettings);
         }
         catch (SmartHomeException e) {
             if(alreadyTriedToLogin) {
@@ -57,7 +57,7 @@ public class RetryFacade implements SmartHomeService {
             }
 
             relogin();
-            delegate.setTemperatureSettings(room, temperatureSettings);
+            delegate.setTemperatureSettings(room, oldSettings, newSettings);
         }
     }
 

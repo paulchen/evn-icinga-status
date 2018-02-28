@@ -89,11 +89,11 @@ public class CheckStatusService {
         final TemperatureSettings temporaryTemperatureSettings = new TemperatureSettings(oldSettings);
         temporaryTemperatureSettings.setTemperatureMode(TemperatureSettings.TemperatureMode.NORMAL);
         temporaryTemperatureSettings.setAutoTemperature(oldSettings.getAutoTemperature() + TEMPERATURE_DIFFERENCE);
-        service.setTemperatureSettings(room, temporaryTemperatureSettings);
+        service.setTemperatureSettings(room, oldSettings, temporaryTemperatureSettings);
 
         sleep(WAIT_SECONDS);
 
-        service.setTemperatureSettings(room, oldSettings);
+        service.setTemperatureSettings(room, temporaryTemperatureSettings, oldSettings);
 
         sleep(WAIT_SECONDS);
     }

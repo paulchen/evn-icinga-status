@@ -9,5 +9,5 @@ public interface SmartHomeService {
 
     String getSessionToken();
 
-    void setTemperatureSettings(Room room, TemperatureSettings temperatureSettings);
+    void setTemperatureSettings(Room room, TemperatureSettings oldSettings, TemperatureSettings newSettings);
 }
