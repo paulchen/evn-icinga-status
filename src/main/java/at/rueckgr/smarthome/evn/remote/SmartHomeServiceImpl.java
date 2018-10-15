@@ -124,6 +124,8 @@ public class SmartHomeServiceImpl implements SmartHomeService {
                 return TemperatureSettings.TemperatureMode.COMFORT;
             case ECO:
                 return TemperatureSettings.TemperatureMode.ECO;
+            case NOT_AVAILABLE:
+                return TemperatureSettings.TemperatureMode.NOT_AVAILABLE;
             default:
                 throw new SmartHomeException("Unknown temperature mode: " + room.getTemperatureMode().getValue());
         }

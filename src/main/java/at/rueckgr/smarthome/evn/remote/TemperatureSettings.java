@@ -9,7 +9,7 @@ import lombok.Setter;
 @Setter
 public class TemperatureSettings {
     public enum TemperatureMode {
-        COMFORT, ECO, NORMAL
+        COMFORT, ECO, NORMAL, NOT_AVAILABLE;
     }
 
     private double autoTemperature;
